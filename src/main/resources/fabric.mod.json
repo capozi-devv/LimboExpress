@@ -26,6 +26,11 @@
   "mixins": [
     "limbo_express.mixins.json"
   ],
+  "custom": {
+    "cardinal-components": [
+      "limbo_express:overdose"
+    ]
+  },
   "accessWidener" : "limbo_express.accesswidener",
   "depends": {
     "fabricloader": ">=${loader_version}",
