@@ -3,6 +3,7 @@ package net.capozi.limbo_express.common;
 import dev.doctor4t.wathe.cca.PlayerShopComponent;
 import dev.doctor4t.wathe.index.WatheItems;
 import dev.doctor4t.wathe.util.ShopEntry;
+import net.capozi.limbo_express.foundation.ItemInit;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Util;
@@ -23,10 +24,11 @@ public interface ModifiedGameConstants {
             }
         });
         entries.add(new ShopEntry(WatheItems.POISON_VIAL.getDefaultStack(), 100, ShopEntry.Type.POISON));
-        entries.add(new ShopEntry(WatheItems.SCORPION.getDefaultStack(), 50, ShopEntry.Type.POISON));
+        entries.add(new ShopEntry(ItemInit.INSANITY_PILLS.getDefaultStack(), 25, ShopEntry.Type.POISON));
+        entries.add(new ShopEntry(WatheItems.SCORPION.getDefaultStack(), 75, ShopEntry.Type.POISON));
         entries.add(new ShopEntry(WatheItems.FIRECRACKER.getDefaultStack(), 10, ShopEntry.Type.TOOL));
         entries.add(new ShopEntry(WatheItems.LOCKPICK.getDefaultStack(), 50, ShopEntry.Type.TOOL));
-        entries.add(new ShopEntry(WatheItems.BODY_BAG.getDefaultStack(), 200, ShopEntry.Type.TOOL));
+        entries.add(new ShopEntry(WatheItems.BODY_BAG.getDefaultStack(), 150, ShopEntry.Type.TOOL));
         entries.add(new ShopEntry(WatheItems.BLACKOUT.getDefaultStack(), 200, ShopEntry.Type.TOOL) {
             @Override
             public boolean onBuy(@NotNull PlayerEntity player) {
@@ -37,8 +39,10 @@ public interface ModifiedGameConstants {
     });
     List<ShopEntry> CIVILIAN_SHOP_ENTRIES = Util.make(new ArrayList<>(), entries -> {
         entries.add(new ShopEntry(new ItemStack(WatheItems.NOTE, 4), 10, ShopEntry.Type.TOOL));
-        entries.add(new ShopEntry(new ItemStack(WatheItems.NOTE, 4), 10, ShopEntry.Type.TOOL));
-        entries.add(new ShopEntry(new ItemStack(WatheItems.NOTE, 4), 10, ShopEntry.Type.TOOL));
+        entries.add(new ShopEntry(new ItemStack(ItemInit.SANITY_PILLS, 1), 200, ShopEntry.Type.TOOL));
+        entries.add(new ShopEntry(new ItemStack(ItemInit.SANITY_PILLS, 2), 300, ShopEntry.Type.TOOL));
+        entries.add(new ShopEntry(new ItemStack(WatheItems.DERRINGER, 1), 500, ShopEntry.Type.WEAPON));
     });
     float MOOD_GAIN = 0.25f;
+    float OVERDOSE_MOOD_DRAIN = 0.35f;
 }

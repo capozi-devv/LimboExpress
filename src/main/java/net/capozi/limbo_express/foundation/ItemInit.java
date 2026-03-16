@@ -11,5 +11,6 @@ public class ItemInit {
     public static Item item(String name, Item item) {
         return Registry.register(Registries.ITEM, Identifier.of(LimboExpress.MOD_ID, name), item);
     }
-    public static final Item SANITY_PILLS = item("sanity_pills", new SanityPillsItem(new Item.Settings().maxCount(1).food()));
+    public static final Item SANITY_PILLS = item("sanity_pills", new SanityPillsItem(new Item.Settings().maxCount(1)));
+    public static final Item INSANITY_PILLS = item("insanity_pills", new SanityPillsItem(new Item.Settings().maxCount(1)));
 }

@@ -18,6 +18,9 @@
     ],
     "main": [
       "net.capozi.limbo_express.LimboExpress"
+    ],
+    "cardinal-components": [
+      "net.capozi.limbo_express.LimboExpressComponents"
     ]
   },
   "mixins": [

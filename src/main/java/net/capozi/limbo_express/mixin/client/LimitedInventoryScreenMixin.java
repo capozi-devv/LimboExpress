@@ -13,6 +13,9 @@ import net.minecraft.screen.PlayerScreenHandler;
 import net.minecraft.text.Text;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.List;
 
@@ -24,8 +27,8 @@ public class LimitedInventoryScreenMixin extends LimitedHandledScreen<PlayerScre
     private LimitedInventoryScreenMixin(PlayerScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
     }
-    @Overwrite
-    protected void init() {
+    @Inject(method = "init", at = @At("HEAD"), cancellable = true)
+    protected void init(CallbackInfo ci) {
         super.init();
         PlayerEntity objectPlayer = ((LimitedInventoryScreen)(Object)this).player;
         if (GameWorldComponent.KEY.get(objectPlayer.getWorld()).isInnocent(objectPlayer) || GameWorldComponent.KEY.get(objectPlayer.getWorld()).isInnocent(objectPlayer)) {
@@ -45,8 +48,8 @@ public class LimitedInventoryScreenMixin extends LimitedHandledScreen<PlayerScre
                 this.addDrawableChild(new LimitedInventoryScreen.StoreItemWidget(((LimitedInventoryScreen)(Object)this), x + apart * i, y, entries.get(i), i));
             }
         }
+        ci.cancel();
     }
-
     @Overwrite
     protected void drawBackground(DrawContext context, float v, int i, int i1) {
         context.drawTexture(BACKGROUND_TEXTURE, this.x, this.y, 0, 0, this.backgroundWidth, this.backgroundHeight);

@@ -8,6 +8,7 @@
     "PlayerMoodComponentMixin",
     "RevolverItemMixin",
     "WatheMixin",
+    "GameFunctionsMixin",
     "client.StoreRendererMixin"
   ],
   "client": [
