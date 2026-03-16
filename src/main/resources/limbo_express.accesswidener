@@ -1,0 +1,30 @@
+accessWidener v2 named
+
+accessible class net/minecraft/client/render/BackgroundRenderer$FogData
+accessible field net/minecraft/client/render/BackgroundRenderer$FogData fogStart F
+accessible field net/minecraft/client/render/BackgroundRenderer$FogData fogEnd F
+accessible field net/minecraft/client/render/BackgroundRenderer$FogData fogShape Lnet/minecraft/client/render/FogShape;
+
+accessible method net/minecraft/client/render/Camera setRotation (FF)V
+accessible method net/minecraft/client/render/Camera setPos (Lnet/minecraft/util/math/Vec3d;)V
+
+accessible class net/minecraft/client/gui/widget/OptionListWidget$OptionWidgetEntry
+accessible class net/minecraft/client/gui/widget/OptionListWidget$WidgetEntry
+
+accessible class net/minecraft/entity/player/ItemCooldownManager$Entry
+accessible field net/minecraft/entity/player/ItemCooldownManager entries Ljava/util/Map;
+accessible field net/minecraft/entity/player/ItemCooldownManager$Entry startTick I
+accessible field net/minecraft/entity/player/ItemCooldownManager$Entry endTick I
+accessible field net/minecraft/entity/player/ItemCooldownManager tick I
+
+accessible field net/minecraft/client/render/WorldRenderer ticks I
+
+accessible field net/minecraft/client/gui/DrawContext guiAtlasManager Lnet/minecraft/client/texture/GuiAtlasManager;
+
+accessible field net/minecraft/entity/player/PlayerInventory combinedInventory Ljava/util/List;
+
+accessible method net/minecraft/client/gui/DrawContext drawTexturedQuad (Lnet/minecraft/util/Identifier;IIIIIFFFFFFFF)V
+
+accessible class net/minecraft/client/texture/ResourceTexture$TextureData
+
+accessible field net/minecraft/client/option/GameOptions viewDistance Lnet/minecraft/client/option/SimpleOption;

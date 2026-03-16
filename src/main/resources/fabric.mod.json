@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "limbo_express",
+  "version": "${version}",
+  "name": "Limbo Express",
+  "description": "",
+  "authors": ["capozi.devv"],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/limbo_express/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "fabric-datagen": [
+      "net.capozi.limbo_express.LimboExpressDataGenerator"
+    ],
+    "client": [
+      "net.capozi.limbo_express.LimboExpressClient"
+    ],
+    "main": [
+      "net.capozi.limbo_express.LimboExpress"
+    ]
+  },
+  "mixins": [
+    "limbo_express.mixins.json"
+  ],
+  "accessWidener" : "limbo_express.accesswidener",
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric-api": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
