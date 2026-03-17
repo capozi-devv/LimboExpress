@@ -8,6 +8,7 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
 public class ItemInit {
+    public static void init() {}
     public static Item item(String name, Item item) {
         return Registry.register(Registries.ITEM, Identifier.of(LimboExpress.MOD_ID, name), item);
     }

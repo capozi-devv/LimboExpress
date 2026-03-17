@@ -15,18 +15,9 @@ import java.util.List;
 public interface ModifiedGameConstants {
     List<ShopEntry> MODIFIED_KILLER_SHOP_ENTRIES = Util.make(new ArrayList<>(), entries -> {
         entries.add(new ShopEntry(WatheItems.KNIFE.getDefaultStack(), 100, ShopEntry.Type.WEAPON));
-        entries.add(new ShopEntry(WatheItems.REVOLVER.getDefaultStack(), 300, ShopEntry.Type.WEAPON));
         entries.add(new ShopEntry(WatheItems.GRENADE.getDefaultStack(), 350, ShopEntry.Type.WEAPON));
-        entries.add(new ShopEntry(WatheItems.PSYCHO_MODE.getDefaultStack(), 300, ShopEntry.Type.WEAPON) {
-            @Override
-            public boolean onBuy(@NotNull PlayerEntity player) {
-                return PlayerShopComponent.usePsychoMode(player);
-            }
-        });
-        entries.add(new ShopEntry(WatheItems.POISON_VIAL.getDefaultStack(), 100, ShopEntry.Type.POISON));
         entries.add(new ShopEntry(ItemInit.INSANITY_PILLS.getDefaultStack(), 25, ShopEntry.Type.POISON));
         entries.add(new ShopEntry(WatheItems.SCORPION.getDefaultStack(), 75, ShopEntry.Type.POISON));
-        entries.add(new ShopEntry(WatheItems.FIRECRACKER.getDefaultStack(), 10, ShopEntry.Type.TOOL));
         entries.add(new ShopEntry(WatheItems.LOCKPICK.getDefaultStack(), 50, ShopEntry.Type.TOOL));
         entries.add(new ShopEntry(WatheItems.BODY_BAG.getDefaultStack(), 150, ShopEntry.Type.TOOL));
         entries.add(new ShopEntry(WatheItems.BLACKOUT.getDefaultStack(), 200, ShopEntry.Type.TOOL) {
@@ -35,12 +26,10 @@ public interface ModifiedGameConstants {
                 return PlayerShopComponent.useBlackout(player);
             }
         });
-        entries.add(new ShopEntry(new ItemStack(WatheItems.NOTE, 4), 10, ShopEntry.Type.TOOL));
     });
     List<ShopEntry> CIVILIAN_SHOP_ENTRIES = Util.make(new ArrayList<>(), entries -> {
-        entries.add(new ShopEntry(new ItemStack(WatheItems.NOTE, 4), 10, ShopEntry.Type.TOOL));
-        entries.add(new ShopEntry(new ItemStack(ItemInit.SANITY_PILLS, 1), 200, ShopEntry.Type.TOOL));
-        entries.add(new ShopEntry(new ItemStack(ItemInit.SANITY_PILLS, 2), 300, ShopEntry.Type.TOOL));
+        entries.add(new ShopEntry(new ItemStack(WatheItems.NOTE, 4), 25, ShopEntry.Type.TOOL));
+        entries.add(new ShopEntry(new ItemStack(ItemInit.SANITY_PILLS, 1), 150, ShopEntry.Type.TOOL));
         entries.add(new ShopEntry(new ItemStack(WatheItems.DERRINGER, 1), 500, ShopEntry.Type.WEAPON));
     });
     float MOOD_GAIN = 0.25f;

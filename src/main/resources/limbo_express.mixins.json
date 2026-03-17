@@ -4,11 +4,14 @@
   "package": "net.capozi.limbo_express.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "KnifeItemMixin",
+    "GameFunctionsMixin",
     "PlayerMoodComponentMixin",
     "RevolverItemMixin",
+    "StoreBuyPayloadReceiverMixin",
     "WatheMixin",
-    "GameFunctionsMixin",
+    "access.PlayerMoodComponentAccessor",
+    "access.PlayerShopComponentAccessor",
+    "access.ShopEntryAccessor",
     "client.StoreRendererMixin"
   ],
   "client": [

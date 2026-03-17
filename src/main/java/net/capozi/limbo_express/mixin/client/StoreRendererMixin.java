@@ -8,15 +8,17 @@ import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.util.math.MathHelper;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import static dev.doctor4t.wathe.client.gui.StoreRenderer.offsetDelta;
-import static dev.doctor4t.wathe.client.gui.StoreRenderer.view;
-
 @Mixin(StoreRenderer.class)
 public class StoreRendererMixin {
+    @Shadow
+    public static StoreRenderer.MoneyNumberRenderer view;
+    @Shadow
+    public static float offsetDelta;
     @Inject(method = "renderHud", at = @At("HEAD"), cancellable = true)
     private static void limboExpress$renderHud(TextRenderer renderer, ClientPlayerEntity player, DrawContext context, float delta, CallbackInfo ci) {
         if (GameWorldComponent.KEY.get(player.getWorld()).isInnocent(player)) {

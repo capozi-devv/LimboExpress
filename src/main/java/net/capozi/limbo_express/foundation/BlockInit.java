@@ -11,6 +11,7 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
 public class BlockInit {
+    public static void init() {}
     private static Item registerBlockItem(String name, Block block) {
         return Registry.register(Registries.ITEM, Identifier.of(LimboExpress.MOD_ID, name), new BlockItem(block, new Item.Settings()));
     }
