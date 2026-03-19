@@ -1,0 +1,8 @@
+{
+  "swap": {
+    "sounds": [
+      "limbo_express:item/swap"
+    ],
+    "subtitle": "Player Swaps"
+  }
+}

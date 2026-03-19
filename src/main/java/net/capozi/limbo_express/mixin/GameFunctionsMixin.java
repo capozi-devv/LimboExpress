@@ -13,6 +13,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
+import net.minecraft.util.Identifier;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -45,8 +46,9 @@ public class GameFunctionsMixin {
         gameComponent.setGameStatus(GameWorldComponent.GameStatus.ACTIVE);
         gameComponent.sync();
     }
-    @Inject(method = "killPlayer(Lnet/minecraft/entity/player/PlayerEntity;ZLnet/minecraft/entity/player/PlayerEntity;)V", at = @At("TAIL"))
-    private static void limboExpress$killPlayer(PlayerEntity victim, boolean spawnBody, PlayerEntity killer, CallbackInfo ci) {
+    @Inject(method = "killPlayer(Lnet/minecraft/entity/player/PlayerEntity;ZLnet/minecraft/entity/player/PlayerEntity;Lnet/minecraft/util/Identifier;)V", at = @At("TAIL"))
+    private static void limboExpress$killPlayer(PlayerEntity victim, boolean spawnBody, PlayerEntity killer, Identifier deathReason, CallbackInfo ci) {
+        if (killer == null) return;
         GameWorldComponent gameWorldComponent = GameWorldComponent.KEY.get(killer.getWorld());
         for (List<ItemStack> list : killer.getInventory().combinedInventory) {
             if (gameWorldComponent.getRole(killer).getMoodType().equals(Role.MoodType.REAL)) {
@@ -54,7 +56,7 @@ public class GameFunctionsMixin {
                     Boolean used = stack.get(WatheDataComponentTypes.USED);
                     if (stack.isOf(WatheItems.DERRINGER) && used != null && used) {
                         stack.set(WatheDataComponentTypes.USED, true);
-                        killer.playSoundToPlayer(WatheSounds.ITEM_DERRINGER_RELOAD, SoundCategory.PLAYERS, 1.0f, 1.0f);
+                        killer.playSoundToPlayer(WatheSounds.ITEM_REVOLVER_CLICK, SoundCategory.PLAYERS, 1.0f, 1.0f);
                     }
                 }
             }

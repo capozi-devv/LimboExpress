@@ -2,6 +2,7 @@ package net.capozi.limbo_express;
 
 import net.capozi.limbo_express.foundation.BlockInit;
 import net.capozi.limbo_express.foundation.ItemInit;
+import net.capozi.limbo_express.foundation.SoundInit;
 import net.fabricmc.api.ModInitializer;
 
 public class LimboExpress implements ModInitializer {
@@ -10,5 +11,6 @@ public class LimboExpress implements ModInitializer {
     public void onInitialize() {
         ItemInit.init();
         BlockInit.init();
+        SoundInit.init();
     }
 }
