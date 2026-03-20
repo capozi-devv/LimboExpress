@@ -13,7 +13,7 @@ import org.ladysnake.cca.api.v3.component.tick.ClientTickingComponent;
 import org.ladysnake.cca.api.v3.component.tick.ServerTickingComponent;
 
 public class PlayerSwapComponent implements AutoSyncedComponent, ClientTickingComponent, ServerTickingComponent {
-    public static final ComponentKey<PlayerSwapComponent> KEY = ComponentRegistry.getOrCreate(Identifier.of(LimboExpress.MOD_ID, "playerSwap"), PlayerSwapComponent.class);
+    public static final ComponentKey<PlayerSwapComponent> KEY = ComponentRegistry.getOrCreate(Identifier.of(LimboExpress.MOD_ID, "player_swap"), PlayerSwapComponent.class);
     private int cooldownTicks = 0;
     public final PlayerEntity player;
     public PlayerSwapComponent(PlayerEntity player) {

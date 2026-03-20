@@ -5,13 +5,11 @@ import dev.doctor4t.wathe.game.GameConstants;
 import dev.doctor4t.wathe.index.WatheItems;
 import dev.doctor4t.wathe.util.ShopEntry;
 import net.capozi.limbo_express.common.cca.PlayerSwapComponent;
-import net.capozi.limbo_express.common.function.ShopFunctions;
+import net.capozi.limbo_express.common.function.ModifiedGameFunctions;
 import net.capozi.limbo_express.foundation.ItemInit;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Util;
-import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -25,24 +23,23 @@ public interface ModifiedGameConstants {
             public boolean onBuy(PlayerEntity player) {
                 if (PlayerSwapComponent.KEY.get(player).getCooldown() != 0) return false;
                 if (player != null) {
-                    player.getItemCooldownManager().set(ItemInit.SWAP, GameConstants.ITEM_COOLDOWNS.getOrDefault(WatheItems.BLACKOUT, 0));
-                    return ShopFunctions.triggerSwap(player.getServer().getOverworld(), player);
-                } else {
-                    return false;
+                    player.getItemCooldownManager().set(ItemInit.SWAP, ModifiedGameConstants.swapCooldown);
+                    return ModifiedGameFunctions.triggerSwap(player.getServer().getOverworld(), player);
                 }
+                return false;
             }
         });
         entries.add(new ShopEntry(WatheItems.GRENADE.getDefaultStack(), 200, ShopEntry.Type.WEAPON));
         entries.add(new ShopEntry(ItemInit.INSANITY_PILLS.getDefaultStack(), 25, ShopEntry.Type.POISON));
         entries.add(new ShopEntry(WatheItems.SCORPION.getDefaultStack(), 75, ShopEntry.Type.POISON));
         entries.add(new ShopEntry(WatheItems.LOCKPICK.getDefaultStack(), 50, ShopEntry.Type.TOOL));
-        entries.add(new ShopEntry(WatheItems.BODY_BAG.getDefaultStack(), 150, ShopEntry.Type.TOOL));
         entries.add(new ShopEntry(WatheItems.BLACKOUT.getDefaultStack(), 300, ShopEntry.Type.TOOL) {
             @Override
             public boolean onBuy(@NotNull PlayerEntity player) {
                 return PlayerShopComponent.useBlackout(player);
             }
         });
+        entries.add(new ShopEntry(WatheItems.BODY_BAG.getDefaultStack(), 150, ShopEntry.Type.TOOL));
     });
     List<ShopEntry> CIVILIAN_SHOP_ENTRIES = Util.make(new ArrayList<>(), entries -> {
         entries.add(new ShopEntry(new ItemStack(WatheItems.NOTE, 4), 25, ShopEntry.Type.TOOL));

@@ -1,7 +1,5 @@
 package net.capozi.limbo_express.common.item;
 
-import net.capozi.limbo_express.common.function.ShopFunctions;
-import net.capozi.limbo_express.foundation.ItemInit;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.tooltip.TooltipType;
