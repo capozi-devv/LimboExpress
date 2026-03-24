@@ -32,7 +32,7 @@ public class ShopFunctions {
         ShopEntry entry = ModifiedGameConstants.CIVILIAN_SHOP_ENTRIES.get(index);
         if (FabricLoader.getInstance().isDevelopmentEnvironment() && shop.balance < entry.price())
             shop.balance = entry.price() * 10;
-        if (shop.balance >= entry.price() && !accessor.player().getItemCooldownManager().isCoolingDown(entry.stack().getItem()) && onBuy(accessor.player(), entry)) {
+        if (shop.balance >= entry.price() && !accessor.player().getItemCooldownManager().isCoolingDown(entry.stack().getItem()) && entry.onBuy(accessor.player())) {
             shop.balance -= entry.price();
             if (accessor.player() instanceof ServerPlayerEntity player) {
                 player.networkHandler.sendPacket(new PlaySoundS2CPacket(Registries.SOUND_EVENT.getEntry(WatheSounds.UI_SHOP_BUY), SoundCategory.PLAYERS, player.getX(), player.getY(), player.getZ(), 1.0f, 0.9f + accessor.player().getRandom().nextFloat() * 0.2f, player.getRandom().nextLong()));

@@ -12,6 +12,7 @@
     "access.PlayerMoodComponentAccessor",
     "access.PlayerShopComponentAccessor",
     "access.ShopEntryAccessor",
+    "client.MoodRendererMixin",
     "client.StoreRendererMixin"
   ],
   "client": [

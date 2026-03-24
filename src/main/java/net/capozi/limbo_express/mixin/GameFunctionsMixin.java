@@ -56,6 +56,7 @@ public class GameFunctionsMixin {
                     Boolean used = stack.get(WatheDataComponentTypes.USED);
                     if (stack.isOf(WatheItems.DERRINGER) && used != null && used) {
                         stack.set(WatheDataComponentTypes.USED, true);
+                        stack.decrement(1);
                         killer.playSoundToPlayer(WatheSounds.ITEM_REVOLVER_CLICK, SoundCategory.PLAYERS, 1.0f, 1.0f);
                     }
                 }

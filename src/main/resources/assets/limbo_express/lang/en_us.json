@@ -5,5 +5,6 @@
   "item.limbo_express.swap.tooltipLine1": "§7Swap the positions of all players",
   "item.limbo_express.swap.tooltipLine2": "§7on the train. Activated instantly",
   "item.limbo_express.swap.tooltipLine3": "§7on purchase, 5 minute cooldown",
-  "message.limbo_express.player.swap_fail": "You were not swapped, consider yourself lucky"
+  "message.limbo_express.player.swap_fail": "You were not swapped, consider yourself lucky",
+  "resourcepack.limbo_express.mood_retextures": "Mood Retextures"
 }
