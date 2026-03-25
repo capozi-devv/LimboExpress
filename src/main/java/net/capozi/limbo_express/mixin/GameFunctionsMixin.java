@@ -13,6 +13,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -54,10 +55,10 @@ public class GameFunctionsMixin {
             if (gameWorldComponent.getRole(killer).getMoodType().equals(Role.MoodType.REAL)) {
                 for (ItemStack stack : list) {
                     Boolean used = stack.get(WatheDataComponentTypes.USED);
-                    if (stack.isOf(WatheItems.DERRINGER) && used != null && used) {
+                    if (stack.isOf(WatheItems.DERRINGER) && used != null && !used) {
                         stack.set(WatheDataComponentTypes.USED, true);
                         stack.decrement(1);
-                        killer.playSoundToPlayer(WatheSounds.ITEM_REVOLVER_CLICK, SoundCategory.PLAYERS, 1.0f, 1.0f);
+                        killer.playSound(SoundEvents.ITEM_SHIELD_BREAK, 1.0f, 1.0f);
                     }
                 }
             }
