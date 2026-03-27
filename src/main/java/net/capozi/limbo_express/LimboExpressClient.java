@@ -1,12 +1,15 @@
 package net.capozi.limbo_express;
 
 import net.capozi.limbo_express.common.function.ModifiedGameFunctions;
+import net.capozi.limbo_express.foundation.BlockInit;
 import net.capozi.limbo_express.foundation.ItemInit;
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
 import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.client.render.RenderLayer;
 import net.minecraft.util.Identifier;
 
 public class LimboExpressClient implements ClientModInitializer {
@@ -15,6 +18,7 @@ public class LimboExpressClient implements ClientModInitializer {
     public void onInitializeClient() {
         ItemTooltipCallback.EVENT.register((itemStack, tooltipContext, tooltipType, tooltipList) -> {
             ModifiedGameFunctions.addCooldownText(ItemInit.SWAP, tooltipList, itemStack);
+            BlockRenderLayerMap.INSTANCE.putBlock(BlockInit.SILVER_ORNAMENT, RenderLayer.getCutout());
         });
     }
 }

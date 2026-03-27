@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "limbo_express:block/gold_ornament_all"
+  }
+}
