@@ -4,6 +4,7 @@
   "package": "net.capozi.limbo_express.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "DerringerItemMixin",
     "GameFunctionsMixin",
     "PlayerMoodComponentMixin",
     "RevolverItemMixin",
@@ -16,7 +17,8 @@
     "client.StoreRendererMixin"
   ],
   "client": [
-    "client.LimitedInventoryScreenMixin"
+    "client.LimitedInventoryScreenMixin",
+    "client.WorldRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

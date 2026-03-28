@@ -1,0 +1,19 @@
+package net.capozi.limbo_express.mixin.client;
+
+import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
+import com.llamalad7.mixinextras.sugar.Local;
+import dev.doctor4t.wathe.client.WatheClient;
+import net.capozi.limbo_express.common.function.RenderFunctions;
+import net.minecraft.client.render.WorldRenderer;
+import net.minecraft.entity.Entity;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+
+@Mixin(WorldRenderer.class)
+public class WorldRendererMixin {
+    @ModifyExpressionValue(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/Entity;getTeamColorValue()I"))
+    public int render(int original, @Local Entity entity) {
+        int highlight = RenderFunctions.getInstinctHighlight(entity);
+        return highlight == -1 ? original : highlight;
+    }
+}

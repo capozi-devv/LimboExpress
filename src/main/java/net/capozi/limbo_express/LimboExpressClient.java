@@ -18,7 +18,8 @@ public class LimboExpressClient implements ClientModInitializer {
     public void onInitializeClient() {
         ItemTooltipCallback.EVENT.register((itemStack, tooltipContext, tooltipType, tooltipList) -> {
             ModifiedGameFunctions.addCooldownText(ItemInit.SWAP, tooltipList, itemStack);
-            BlockRenderLayerMap.INSTANCE.putBlock(BlockInit.SILVER_ORNAMENT, RenderLayer.getCutout());
+            ModifiedGameFunctions.addCooldownText(ItemInit.CIVILIAN_SIGHT, tooltipList, itemStack);
         });
+        BlockRenderLayerMap.INSTANCE.putBlock(BlockInit.SILVER_ORNAMENT, RenderLayer.getCutout());
     }
 }

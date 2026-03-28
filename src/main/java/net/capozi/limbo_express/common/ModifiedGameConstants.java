@@ -60,8 +60,15 @@ public interface ModifiedGameConstants {
                 return ShopFunctions.onBuy(player, this);
             }
         });
+        entries.add(new ShopEntry(new ItemStack(ItemInit.CIVILIAN_SIGHT), 350, ShopEntry.Type.TOOL) {
+            @Override
+            public boolean onBuy(@NotNull PlayerEntity player) {
+                return ModifiedGameFunctions.activateCivilianSight(player);
+            }
+        });
     });
     float MOOD_GAIN = 0.25f;
     float OVERDOSE_MOOD_DRAIN = 0.35f;
     int swapCooldown = 6000;
+    int civilianSightCooldown = 3600;
 }

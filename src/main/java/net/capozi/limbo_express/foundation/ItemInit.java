@@ -1,6 +1,7 @@
 package net.capozi.limbo_express.foundation;
 
 import net.capozi.limbo_express.LimboExpress;
+import net.capozi.limbo_express.common.item.CivilianSightItem;
 import net.capozi.limbo_express.common.item.MatchstickItem;
 import net.capozi.limbo_express.common.item.SanityPillsItem;
 import net.capozi.limbo_express.common.item.SwapItem;
@@ -14,8 +15,9 @@ public class ItemInit {
     public static Item item(String name, Item item) {
         return Registry.register(Registries.ITEM, Identifier.of(LimboExpress.MOD_ID, name), item);
     }
-    public static final Item SANITY_PILLS = item("sanity_pills", new SanityPillsItem(new Item.Settings().maxCount(1)));
+    public static final Item SANITY_PILLS = item("sanity_pills", new SanityPillsItem(new Item.Settings().maxCount(4)));
     public static final Item INSANITY_PILLS = item("insanity_pills", new SanityPillsItem(new Item.Settings().maxCount(1)));
     public static final Item SWAP = item("swap", new SwapItem(new Item.Settings().maxCount(1)));
     public static final Item MATCHSTICK = item("matchstick", new MatchstickItem(new Item.Settings().maxCount(1)));
+    public static final Item CIVILIAN_SIGHT = item("civilian_sight", new CivilianSightItem(new Item.Settings().maxCount(1)));
 }

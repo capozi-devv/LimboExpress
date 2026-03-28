@@ -2,7 +2,9 @@ package net.capozi.limbo_express.common.function;
 
 import dev.doctor4t.wathe.game.GameFunctions;
 import net.capozi.limbo_express.common.ModifiedGameConstants;
+import net.capozi.limbo_express.common.cca.CivilianInstinctComponent;
 import net.capozi.limbo_express.common.cca.PlayerSwapComponent;
+import net.capozi.limbo_express.foundation.ItemInit;
 import net.capozi.limbo_express.foundation.SoundInit;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.player.ItemCooldownManager;
@@ -56,6 +58,17 @@ public class ModifiedGameFunctions {
                 playerPositionMap.remove(player);
             }
             PlayerSwapComponent.KEY.get(killer).setCooldown(ModifiedGameConstants.swapCooldown);
+            return true;
+        }
+        return false;
+    }
+    public static boolean activateCivilianSight(PlayerEntity user) {
+        CivilianInstinctComponent instinct = CivilianInstinctComponent.KEY.get(user);
+        if (!instinct.hasCivilianInstinct) {
+            if (instinct.getCooldown() != 0) return false;
+            instinct.hasCivilianInstinct = true;
+            instinct.setCooldown(ModifiedGameConstants.civilianSightCooldown);
+            user.getItemCooldownManager().set(ItemInit.CIVILIAN_SIGHT, ModifiedGameConstants.civilianSightCooldown);
             return true;
         }
         return false;

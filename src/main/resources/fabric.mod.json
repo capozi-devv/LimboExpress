@@ -29,7 +29,8 @@
   "custom": {
     "cardinal-components": [
       "limbo_express:overdose",
-      "limbo_express:player_swap"
+      "limbo_express:player_swap",
+      "limbo_express:civilian_instinct"
     ]
   },
   "accessWidener" : "limbo_express.accesswidener",

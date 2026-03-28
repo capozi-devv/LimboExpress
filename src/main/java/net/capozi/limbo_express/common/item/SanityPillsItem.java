@@ -34,6 +34,5 @@ public class SanityPillsItem extends Item implements AdventureUsable {
     public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
         tooltip.add(1, Text.of("§7Pills that can restore your sanity"));
         tooltip.add(2, Text.of("§7in a pinch. Take sparingly."));
-
     }
 }

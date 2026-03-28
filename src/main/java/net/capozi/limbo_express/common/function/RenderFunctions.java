@@ -4,10 +4,19 @@ import dev.doctor4t.wathe.Wathe;
 import dev.doctor4t.wathe.cca.PlayerMoodComponent;
 import dev.doctor4t.wathe.client.WatheClient;
 import dev.doctor4t.wathe.client.gui.MoodRenderer;
+import dev.doctor4t.wathe.entity.FirecrackerEntity;
+import dev.doctor4t.wathe.entity.NoteEntity;
+import dev.doctor4t.wathe.entity.PlayerBodyEntity;
 import dev.doctor4t.wathe.game.GameConstants;
+import dev.doctor4t.wathe.game.GameFunctions;
 import net.capozi.limbo_express.LimboExpress;
+import net.capozi.limbo_express.common.cca.CivilianInstinctComponent;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.ItemEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
@@ -15,6 +24,8 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import static dev.doctor4t.wathe.client.WatheClient.isInstinctEnabled;
 
 public class RenderFunctions {
     public static final Identifier ARROW_UP = Wathe.id("hud/arrow_up");
@@ -60,5 +71,11 @@ public class RenderFunctions {
         context.getMatrices().scale((moodTextWidth - 8) * moodRender, 1, 1);
         context.fill(0, 0, 1, 1, MathHelper.hsvToRgb(moodRender / 3.0F, 1.0F, 1.0F) | ((int) (moodAlpha * 255) << 24));
         context.getMatrices().pop();
+    }
+    public static int getInstinctHighlight(Entity target) {
+        if (!CivilianInstinctComponent.KEY.get(MinecraftClient.getInstance().player).hasCivilianInstinct) return -1;
+        if (target instanceof PlayerBodyEntity) return 0x990000;
+        if (target instanceof ItemEntity || target instanceof NoteEntity || target instanceof FirecrackerEntity) return 0xDB9D00;
+        return -1;
     }
 }

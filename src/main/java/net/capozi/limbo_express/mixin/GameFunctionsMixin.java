@@ -6,7 +6,9 @@ import dev.doctor4t.wathe.game.GameFunctions;
 import dev.doctor4t.wathe.index.WatheDataComponentTypes;
 import dev.doctor4t.wathe.index.WatheItems;
 import dev.doctor4t.wathe.index.WatheSounds;
+import net.capozi.limbo_express.common.cca.CivilianInstinctComponent;
 import net.capozi.limbo_express.common.cca.OverdoseComponent;
+import net.capozi.limbo_express.common.cca.PlayerSwapComponent;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -30,6 +32,8 @@ public class GameFunctionsMixin {
         for (ServerPlayerEntity serverPlayerEntity : players) {
             serverPlayerEntity.getInventory().clear();
             OverdoseComponent.KEY.get(serverPlayerEntity).reset();
+            CivilianInstinctComponent.KEY.get(serverPlayerEntity).reset();
+            PlayerSwapComponent.KEY.get(serverPlayerEntity).reset();
 
             // remove item cooldowns
             HashSet<Item> copy = new HashSet<>(serverPlayerEntity.getItemCooldownManager().entries.keySet());
@@ -46,22 +50,5 @@ public class GameFunctionsMixin {
 
         gameComponent.setGameStatus(GameWorldComponent.GameStatus.ACTIVE);
         gameComponent.sync();
-    }
-    @Inject(method = "killPlayer(Lnet/minecraft/entity/player/PlayerEntity;ZLnet/minecraft/entity/player/PlayerEntity;Lnet/minecraft/util/Identifier;)V", at = @At("TAIL"))
-    private static void limboExpress$killPlayer(PlayerEntity victim, boolean spawnBody, PlayerEntity killer, Identifier deathReason, CallbackInfo ci) {
-        if (killer == null) return;
-        GameWorldComponent gameWorldComponent = GameWorldComponent.KEY.get(killer.getWorld());
-        for (List<ItemStack> list : killer.getInventory().combinedInventory) {
-            if (gameWorldComponent.getRole(killer).getMoodType().equals(Role.MoodType.REAL)) {
-                for (ItemStack stack : list) {
-                    Boolean used = stack.get(WatheDataComponentTypes.USED);
-                    if (stack.isOf(WatheItems.DERRINGER) && used != null && !used) {
-                        stack.set(WatheDataComponentTypes.USED, true);
-                        stack.decrement(1);
-                        killer.playSound(SoundEvents.ITEM_SHIELD_BREAK, 1.0f, 1.0f);
-                    }
-                }
-            }
-        }
     }
 }
