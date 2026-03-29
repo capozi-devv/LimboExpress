@@ -2,8 +2,7 @@ package net.capozi.limbo_express.mixin.client;
 
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.sugar.Local;
-import dev.doctor4t.wathe.client.WatheClient;
-import net.capozi.limbo_express.common.function.RenderFunctions;
+import net.capozi.limbo_express.client.function.RenderFunctions;
 import net.minecraft.client.render.WorldRenderer;
 import net.minecraft.entity.Entity;
 import org.spongepowered.asm.mixin.Mixin;

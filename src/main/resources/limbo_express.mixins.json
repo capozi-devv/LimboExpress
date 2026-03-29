@@ -13,11 +13,12 @@
     "access.PlayerMoodComponentAccessor",
     "access.PlayerShopComponentAccessor",
     "access.ShopEntryAccessor",
-    "client.MoodRendererMixin",
     "client.StoreRendererMixin"
   ],
   "client": [
+    "client.HeldItemFeatureRendererMixin",
     "client.LimitedInventoryScreenMixin",
+    "client.MinecraftClientMixin",
     "client.WorldRendererMixin"
   ],
   "injectors": {

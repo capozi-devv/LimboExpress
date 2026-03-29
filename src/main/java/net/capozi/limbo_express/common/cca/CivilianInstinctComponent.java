@@ -3,7 +3,6 @@ package net.capozi.limbo_express.common.cca;
 import net.capozi.limbo_express.LimboExpress;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.Identifier;
 import org.ladysnake.cca.api.v3.component.ComponentKey;
@@ -15,13 +14,11 @@ import org.ladysnake.cca.api.v3.component.tick.ServerTickingComponent;
 public class CivilianInstinctComponent implements AutoSyncedComponent, ServerTickingComponent, ClientTickingComponent {
     public static final ComponentKey<CivilianInstinctComponent> KEY = ComponentRegistry.getOrCreate(Identifier.of(LimboExpress.MOD_ID, "civilian_instinct"), CivilianInstinctComponent.class);
     public final PlayerEntity player;
-    public boolean hasCivilianInstinct = false;
+    private boolean hasCivilianInstinct = false;
     private int cooldownTicks = 0;
     private int activeTicks = 0;
     public CivilianInstinctComponent(PlayerEntity player) {
-        reset();
         this.player = player;
-        hasCivilianInstinct = false;
     }
     public void sync() {
         KEY.sync(this.player);
@@ -29,7 +26,17 @@ public class CivilianInstinctComponent implements AutoSyncedComponent, ServerTic
     public void reset() {
         this.cooldownTicks = 0;
         this.activeTicks = 0;
+        this.hasCivilianInstinct = false;
+        sync();
     }
+
+    public boolean hasCivilianInstinct() {
+        return KEY.get(this.player).hasCivilianInstinct;
+    }
+    public boolean setHasCivilianInstinct(boolean value) {
+        return KEY.get(this.player).hasCivilianInstinct = value;
+    }
+
     public int getCooldown() {
         return cooldownTicks;
     }
@@ -37,7 +44,7 @@ public class CivilianInstinctComponent implements AutoSyncedComponent, ServerTic
         return cooldownTicks = cooldown;
     }
     public int getActiveTicks() {
-        return cooldownTicks;
+        return activeTicks;
     }
     @Override
     public void clientTick() {

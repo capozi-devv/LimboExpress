@@ -14,6 +14,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
@@ -64,11 +65,12 @@ public class ModifiedGameFunctions {
     }
     public static boolean activateCivilianSight(PlayerEntity user) {
         CivilianInstinctComponent instinct = CivilianInstinctComponent.KEY.get(user);
-        if (!instinct.hasCivilianInstinct) {
+        if (!instinct.hasCivilianInstinct()) {
             if (instinct.getCooldown() != 0) return false;
-            instinct.hasCivilianInstinct = true;
+            instinct.setHasCivilianInstinct(true);
             instinct.setCooldown(ModifiedGameConstants.civilianSightCooldown);
             user.getItemCooldownManager().set(ItemInit.CIVILIAN_SIGHT, ModifiedGameConstants.civilianSightCooldown);
+            user.playSoundToPlayer(SoundEvents.BLOCK_BELL_RESONATE, SoundCategory.PLAYERS, 1f, 1f);
             return true;
         }
         return false;

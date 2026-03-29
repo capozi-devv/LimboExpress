@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(DerringerItem.class)
 public class DerringerItemMixin {
-    @Inject(method = "use", at = @At("TAIL"))
+    @Inject(method = "use", at = @At("HEAD"))
     private void limboExpress$derringerUse(@NotNull World world, @NotNull PlayerEntity user, Hand hand, CallbackInfoReturnable<TypedActionResult<ItemStack>> cir) {
         GameWorldComponent gameWorldComponent = (GameWorldComponent)GameWorldComponent.KEY.get(user.getWorld());
         if (gameWorldComponent.getRole(user).getMoodType().equals(Role.MoodType.REAL)) {
