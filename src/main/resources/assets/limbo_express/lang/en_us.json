@@ -2,6 +2,7 @@
   "item.limbo_express.sanity_pills": "Sanity Pills",
   "item.limbo_express.insanity_pills": "Insanity Pills",
   "item.limbo_express.swap": "Swap",
+  "item.limbo_express.civilian_sight": "Clairvoyance",
   "item.limbo_express.swap.tooltipLine1": "§7Swap the positions of all players",
   "item.limbo_express.swap.tooltipLine2": "§7on the train. Activated instantly",
   "item.limbo_express.swap.tooltipLine3": "§7on purchase, 5 minute cooldown",
@@ -9,5 +10,7 @@
   "item.limbo_express.civilian_sight.tooltipLine2": "§7for 1 minute. Activated instantly on",
   "item.limbo_express.civilian_sight.tooltipLine3": "§7purchase. 3 minute cooldown",
   "message.limbo_express.player.swap_fail": "You were not swapped, consider yourself lucky",
-  "resourcepack.limbo_express.mood_retextures": "Mood Retextures"
+  "resourcepack.limbo_express.mood_retextures": "Mood Retextures",
+  "block.limbo_express.green_moquette": "Green Moquette",
+  "block.limbo_express.silver_ornament": "Silver Ornament"
 }

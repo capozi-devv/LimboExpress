@@ -28,19 +28,18 @@ import java.util.Map;
 import static dev.doctor4t.wathe.client.util.WatheItemTooltips.COOLDOWN_COLOR;
 
 public class ModifiedGameFunctions {
+    @SuppressWarnings("all")
     public static boolean triggerSwap(ServerWorld world, PlayerEntity killer) {
         List<ServerPlayerEntity> rawPlayers = world.getPlayers();
         Map<ServerPlayerEntity, BlockPos> playerPositionMap = new HashMap<>();
         List<ServerPlayerEntity> playerCheck = new ArrayList<>();
         if (world != null) {
-            if (rawPlayers.isEmpty()) return false;
             for (ServerPlayerEntity player : rawPlayers) {
                 if (GameFunctions.isPlayerAliveAndSurvival(player)) {
                     playerPositionMap.put(player, player.getBlockPos());
                     playerCheck.add(player);
                 }
             }
-            if (playerPositionMap.isEmpty()) return false;
             for (ServerPlayerEntity player : playerCheck) {
                 int index = Random.create().nextBetween(0, playerCheck.size());
                 BlockPos tpPos = playerCheck.get(index).getBlockPos();
@@ -61,7 +60,7 @@ public class ModifiedGameFunctions {
             PlayerSwapComponent.KEY.get(killer).setCooldown(ModifiedGameConstants.swapCooldown);
             return true;
         }
-        return false;
+        return true;
     }
     public static boolean activateCivilianSight(PlayerEntity user) {
         CivilianInstinctComponent instinct = CivilianInstinctComponent.KEY.get(user);
@@ -75,6 +74,7 @@ public class ModifiedGameFunctions {
         }
         return false;
     }
+    @SuppressWarnings("all")
     public static void addCooldownText(Item item, List<Text> tooltipList, @NotNull ItemStack itemStack) {
         if (!itemStack.isOf(item)) return;
         ItemCooldownManager itemCooldownManager = MinecraftClient.getInstance().player.getItemCooldownManager();

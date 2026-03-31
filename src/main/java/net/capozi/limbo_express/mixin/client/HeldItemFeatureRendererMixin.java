@@ -15,7 +15,7 @@ public class HeldItemFeatureRendererMixin {
     @WrapOperation(method = "render(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;ILnet/minecraft/entity/LivingEntity;FFFFFF)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;getMainHandStack()Lnet/minecraft/item/ItemStack;"))
     public ItemStack wathe$hideNoteAndRenderPsychosisItems(LivingEntity instance, Operation<ItemStack> original) {
         ItemStack ret = original.call(instance);
-        if (WatheClient.moodComponent != null && WatheClient.moodComponent.isLowerThanMid()) { // make sure it's only the main hand item that's being replaced
+        if (WatheClient.moodComponent != null && WatheClient.moodComponent.isLowerThanMid()) {
             if (ret.isOf(ItemInit.INSANITY_PILLS)) {
                 ret = new ItemStack(ItemInit.SANITY_PILLS);
             }

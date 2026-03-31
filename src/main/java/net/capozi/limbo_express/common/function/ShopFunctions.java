@@ -48,22 +48,20 @@ public class ShopFunctions {
     public static void modifiedKillerTryBuy(int index, PlayerShopComponent shop) {
         PlayerShopComponentAccessor accessor = ((PlayerShopComponentAccessor)shop);
         if (index >= 0 && index < ModifiedGameConstants.MODIFIED_KILLER_SHOP_ENTRIES.size()) {
-            ShopEntry entry = (ShopEntry)ModifiedGameConstants.MODIFIED_KILLER_SHOP_ENTRIES.get(index);
+            ShopEntry entry = ModifiedGameConstants.MODIFIED_KILLER_SHOP_ENTRIES.get(index);
             if (FabricLoader.getInstance().isDevelopmentEnvironment() && shop.balance < entry.price()) {
                 shop.balance = entry.price() * 10;
             }
             if (shop.balance >= entry.price() && !accessor.player().getItemCooldownManager().isCoolingDown(entry.stack().getItem()) && entry.onBuy(accessor.player())) {
                 shop.balance -= entry.price();
                 PlayerEntity var6 = accessor.player();
-                if (var6 instanceof ServerPlayerEntity) {
-                    ServerPlayerEntity player = (ServerPlayerEntity)var6;
+                if (var6 instanceof ServerPlayerEntity player) {
                     player.networkHandler.sendPacket(new PlaySoundS2CPacket(Registries.SOUND_EVENT.getEntry(WatheSounds.UI_SHOP_BUY), SoundCategory.PLAYERS, player.getX(), player.getY(), player.getZ(), 1.0F, 0.9F + accessor.player().getRandom().nextFloat() * 0.2F, player.getRandom().nextLong()));
                 }
             } else {
                 accessor.player().sendMessage(Text.literal("Purchase Failed").formatted(Formatting.DARK_RED), true);
                 PlayerEntity var4 = accessor.player();
-                if (var4 instanceof ServerPlayerEntity) {
-                    ServerPlayerEntity player = (ServerPlayerEntity)var4;
+                if (var4 instanceof ServerPlayerEntity player) {
                     player.networkHandler.sendPacket(new PlaySoundS2CPacket(Registries.SOUND_EVENT.getEntry(WatheSounds.UI_SHOP_BUY_FAIL), SoundCategory.PLAYERS, player.getX(), player.getY(), player.getZ(), 1.0F, 0.9F + accessor.player().getRandom().nextFloat() * 0.2F, player.getRandom().nextLong()));
                 }
             }

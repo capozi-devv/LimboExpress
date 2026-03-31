@@ -1,6 +1,7 @@
 package net.capozi.limbo_express.common.cca;
 
 import net.capozi.limbo_express.LimboExpress;
+import net.capozi.limbo_express.foundation.ItemInit;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
@@ -17,7 +18,6 @@ public class PlayerSwapComponent implements AutoSyncedComponent, ClientTickingCo
     private int cooldownTicks = 0;
     public final PlayerEntity player;
     public PlayerSwapComponent(PlayerEntity player) {
-        reset();
         this.player = player;
     }
     public void sync() {
@@ -25,6 +25,10 @@ public class PlayerSwapComponent implements AutoSyncedComponent, ClientTickingCo
     }
     public void reset() {
         this.cooldownTicks = 0;
+        if (player != null) {
+            player.getItemCooldownManager().set(ItemInit.SWAP, 0);
+        }
+        sync();
     }
     public int getCooldown() {
         return cooldownTicks;

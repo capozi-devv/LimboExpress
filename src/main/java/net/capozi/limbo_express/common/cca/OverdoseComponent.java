@@ -24,7 +24,6 @@ public class OverdoseComponent implements AutoSyncedComponent, ServerTickingComp
        return moodDrainIncrease;
     }
     public OverdoseComponent(PlayerEntity player) {
-        reset();
         this.player = player;
     }
     public void reset() {

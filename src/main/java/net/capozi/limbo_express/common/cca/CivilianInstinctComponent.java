@@ -1,6 +1,7 @@
 package net.capozi.limbo_express.common.cca;
 
 import net.capozi.limbo_express.LimboExpress;
+import net.capozi.limbo_express.foundation.ItemInit;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.RegistryWrapper;
@@ -27,6 +28,9 @@ public class CivilianInstinctComponent implements AutoSyncedComponent, ServerTic
         this.cooldownTicks = 0;
         this.activeTicks = 0;
         this.hasCivilianInstinct = false;
+        if (player != null) {
+            player.getItemCooldownManager().set(ItemInit.CIVILIAN_SIGHT, 0);
+        }
         sync();
     }
 

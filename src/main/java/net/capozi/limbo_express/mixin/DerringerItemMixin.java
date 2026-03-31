@@ -5,6 +5,7 @@ import dev.doctor4t.wathe.cca.GameWorldComponent;
 import dev.doctor4t.wathe.item.DerringerItem;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
@@ -19,10 +20,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class DerringerItemMixin {
     @Inject(method = "use", at = @At("HEAD"))
     private void limboExpress$derringerUse(@NotNull World world, @NotNull PlayerEntity user, Hand hand, CallbackInfoReturnable<TypedActionResult<ItemStack>> cir) {
-        GameWorldComponent gameWorldComponent = (GameWorldComponent)GameWorldComponent.KEY.get(user.getWorld());
+        GameWorldComponent gameWorldComponent = GameWorldComponent.KEY.get(user.getWorld());
         if (gameWorldComponent.getRole(user).getMoodType().equals(Role.MoodType.REAL)) {
             user.getStackInHand(hand).decrement(1);
-            user.playSound(SoundEvents.ITEM_SHIELD_BREAK, 1f, 1f);
+            user.playSoundToPlayer(SoundEvents.ITEM_SHIELD_BREAK, SoundCategory.PLAYERS, 1f, 1f);
         }
     }
 }
