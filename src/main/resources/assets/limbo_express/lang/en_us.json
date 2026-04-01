@@ -12,5 +12,9 @@
   "message.limbo_express.player.swap_fail": "You were not swapped, consider yourself lucky",
   "resourcepack.limbo_express.mood_retextures": "Mood Retextures",
   "block.limbo_express.green_moquette": "Green Moquette",
-  "block.limbo_express.silver_ornament": "Silver Ornament"
+  "block.limbo_express.silver_ornament": "Silver Ornament",
+  "tip.letter.master_suite": "the Master Suite",
+  "tip.letter.panoramic_suite": "the Panoramic Suite",
+  "tip.letter.silk_suite": "the Silk Suite",
+  "tip.letter.aqua_suite": "the Aqua Suite"
 }

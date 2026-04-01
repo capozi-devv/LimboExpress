@@ -3,7 +3,7 @@ package net.capozi.limbo_express.mixin;
 import dev.doctor4t.wathe.cca.GameWorldComponent;
 import dev.doctor4t.wathe.cca.PlayerShopComponent;
 import dev.doctor4t.wathe.util.StoreBuyPayload;
-import net.capozi.limbo_express.common.function.ShopFunctions;
+import net.capozi.limbo_express.common.game.function.ShopFunctions;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;

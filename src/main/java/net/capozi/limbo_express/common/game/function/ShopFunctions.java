@@ -1,4 +1,4 @@
-package net.capozi.limbo_express.common.function;
+package net.capozi.limbo_express.common.game.function;
 
 import dev.doctor4t.wathe.cca.GameWorldComponent;
 import dev.doctor4t.wathe.cca.PlayerShopComponent;
@@ -6,7 +6,6 @@ import dev.doctor4t.wathe.index.WatheSounds;
 import dev.doctor4t.wathe.util.ShopEntry;
 import net.capozi.limbo_express.common.ModifiedGameConstants;
 import net.capozi.limbo_express.mixin.access.PlayerShopComponentAccessor;
-import net.capozi.limbo_express.mixin.access.ShopEntryAccessor;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.network.packet.s2c.play.PlaySoundS2CPacket;
@@ -22,8 +21,7 @@ import static dev.doctor4t.wathe.util.ShopEntry.insertStackInFreeSlot;
 public class ShopFunctions {
     public static boolean onBuy(@NotNull PlayerEntity player, ShopEntry shop) {
         if (GameWorldComponent.KEY.get(player.getWorld()).isInnocent(player)) {
-            ShopEntryAccessor accessor = ((ShopEntryAccessor)shop);
-            return insertStackInFreeSlot(player, accessor.getStack().copy());
+            return insertStackInFreeSlot(player, shop.stack().copy());
         } else return false;
     }
     public static void civilianTryBuy(int index, PlayerShopComponent shop) {

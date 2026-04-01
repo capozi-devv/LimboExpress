@@ -8,8 +8,6 @@ import net.capozi.limbo_express.common.item.SanityPillsItem;
 import net.capozi.limbo_express.common.item.SwapItem;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.util.Identifier;
 
 public class ItemInit {
     private static Registrar<Item> itemRegistrar = new Registrar<Item>(LimboExpress.MOD_ID, Registries.ITEM);

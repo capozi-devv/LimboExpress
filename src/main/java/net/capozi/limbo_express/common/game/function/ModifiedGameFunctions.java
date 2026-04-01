@@ -1,4 +1,4 @@
-package net.capozi.limbo_express.common.function;
+package net.capozi.limbo_express.common.game.function;
 
 import dev.doctor4t.wathe.game.GameFunctions;
 import net.capozi.limbo_express.common.ModifiedGameConstants;

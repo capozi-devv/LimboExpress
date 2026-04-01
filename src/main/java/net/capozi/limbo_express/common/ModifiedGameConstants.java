@@ -1,12 +1,11 @@
 package net.capozi.limbo_express.common;
 
 import dev.doctor4t.wathe.cca.PlayerShopComponent;
-import dev.doctor4t.wathe.game.GameConstants;
 import dev.doctor4t.wathe.index.WatheItems;
 import dev.doctor4t.wathe.util.ShopEntry;
 import net.capozi.limbo_express.common.cca.PlayerSwapComponent;
-import net.capozi.limbo_express.common.function.ModifiedGameFunctions;
-import net.capozi.limbo_express.common.function.ShopFunctions;
+import net.capozi.limbo_express.common.game.function.ModifiedGameFunctions;
+import net.capozi.limbo_express.common.game.function.ShopFunctions;
 import net.capozi.limbo_express.foundation.ItemInit;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;

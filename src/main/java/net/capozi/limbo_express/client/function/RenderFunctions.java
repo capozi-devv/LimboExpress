@@ -11,8 +11,8 @@ import net.minecraft.entity.ItemEntity;
 import net.minecraft.util.Identifier;
 
 public class RenderFunctions {
-    public static final Identifier MOOD_HAPPY = LimboExpress.id( "hud/mood_happy");
-    public static final Identifier MOOD_MID = LimboExpress.id( "hud/mood_mid");
+    public static final Identifier MOOD_HAPPY = LimboExpress.id("hud/mood_happy");
+    public static final Identifier MOOD_MID = LimboExpress.id("hud/mood_mid");
     public static final Identifier MOOD_DEPRESSIVE = LimboExpress.id("hud/mood_depressive");
     public static int getInstinctHighlight(Entity target) {
         if (CivilianInstinctComponent.KEY.get(MinecraftClient.getInstance().player).hasCivilianInstinct()) {
