@@ -13,8 +13,12 @@
   "resourcepack.limbo_express.mood_retextures": "Mood Retextures",
   "block.limbo_express.green_moquette": "Green Moquette",
   "block.limbo_express.silver_ornament": "Silver Ornament",
-  "tip.letter.master_suite": "the Master Suite",
-  "tip.letter.panoramic_suite": "the Panoramic Suite",
-  "tip.letter.silk_suite": "the Silk Suite",
-  "tip.letter.aqua_suite": "the Aqua Suite"
+  "tip.letter.room.master_suite": "the Master Suite",
+  "tip.letter.room.panoramic_suite": "the Panoramic Suite",
+  "tip.letter.room.silk_suite": "the Silk Suite",
+  "tip.letter.room.aqua_suite": "the Aqua Suite",
+  "tip.letter.name.limbo": "Dear %s, welcome aboard the §kLimbo Express§r.",
+  "tip.letter.tooltip1.limbo": "%s for your trip on the §k1st§r of §kJanuary§r, 19§k23§r.",
+  "tip.letter.tooltip2.limbo": "The §kLimbo§r Consolidation we§kcomes you to your.",
+  "tip.letter.illegible": "§oThe rest of the letter is illegible..."
 }

@@ -28,7 +28,7 @@ public class LimboMapEffect extends HarpyExpressTrainMapEffect {
         trainWorldComponent.setFog(false);
         trainWorldComponent.setHud(true);
         trainWorldComponent.setSpeed(130);
-        trainWorldComponent.setTime(0);
+        trainWorldComponent.setTime(18000);
         Collections.shuffle(players);
         int roomNumber = 0;
         for (ServerPlayerEntity serverPlayerEntity : players) {
@@ -54,16 +54,16 @@ public class LimboMapEffect extends HarpyExpressTrainMapEffect {
             letter.apply(DataComponentTypes.LORE, LoreComponent.DEFAULT, component -> {
                         List<Text> text = new ArrayList<>();
                         UnaryOperator<Style> stylizer = style -> style.withItalic(false).withColor(letterColor);
+                        UnaryOperator<Style> stylizer2 = style -> style.withColor(letterColor);
 
                         Text displayName = serverPlayerEntity.getDisplayName();
                         String string = displayName != null ? displayName.getString() : serverPlayerEntity.getName().getString();
-                        if (string.charAt(string.length() - 1) == '\uE780') { // remove ratty supporter icon
+                        if (string.charAt(string.length() - 1) == '\uE780') {
                             string = string.substring(0, string.length() - 1);
                         }
-
-                        text.add(Text.translatable(tipString + "name", string).styled(style -> style.withItalic(false).withColor(0xFFFFFF)));
+                        text.add(Text.translatable(tipString + "name.limbo", string).styled(style -> style.withItalic(false).withColor(0xFFFFFF)));
                         text.add(Text.translatable(tipString + "room").styled(stylizer));
-                        text.add(Text.translatable(tipString + "tooltip1",
+                        text.add(Text.translatable(tipString + "tooltip1.limbo",
                                 Text.translatable(tipString + "room." + switch (finalRoomNumber) {
                                     case 1 -> "grand_suite";
                                     case 2 -> "master_suite";
@@ -73,7 +73,8 @@ public class LimboMapEffect extends HarpyExpressTrainMapEffect {
                                     default -> "twin_cabin";
                                 }).getString()
                         ).styled(stylizer));
-                        text.add(Text.translatable(tipString + "tooltip2").styled(stylizer));
+                        text.add(Text.translatable(tipString + "tooltip2.limbo").styled(stylizer));
+                        text.add(Text.translatable("tip.letter.illegible").styled(stylizer2));
                         return new LoreComponent(text);
                     }
             );

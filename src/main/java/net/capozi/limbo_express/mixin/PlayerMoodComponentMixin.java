@@ -4,6 +4,7 @@ import dev.doctor4t.wathe.api.Role;
 import dev.doctor4t.wathe.cca.GameWorldComponent;
 import dev.doctor4t.wathe.cca.PlayerMoodComponent;
 import dev.doctor4t.wathe.cca.PlayerShopComponent;
+import net.capozi.limbo_express.foundation.MapEffectInit;
 import net.minecraft.entity.player.PlayerEntity;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -22,11 +23,13 @@ public abstract class PlayerMoodComponentMixin {
     @Inject(method = "setMood", at = @At("HEAD"))
     void giveCoinsForMood(float mood, CallbackInfo ci) {
         GameWorldComponent gameWorldComponent = (GameWorldComponent)GameWorldComponent.KEY.get(player.getWorld());
-        if (mood > getMood()) {
-            if (gameWorldComponent.getRole(player) != null) {
-                if (gameWorldComponent.getRole(player).getMoodType().equals(Role.MoodType.REAL)) {
-                    PlayerShopComponent shopComponent = PlayerShopComponent.KEY.get(player);
-                    shopComponent.addToBalance(50);
+        if (gameWorldComponent.getMapEffect().equals(MapEffectInit.LIMBO)) {
+            if (mood > getMood()) {
+                if (gameWorldComponent.getRole(player) != null) {
+                    if (gameWorldComponent.getRole(player).getMoodType().equals(Role.MoodType.REAL)) {
+                        PlayerShopComponent shopComponent = PlayerShopComponent.KEY.get(player);
+                        shopComponent.addToBalance(50);
+                    }
                 }
             }
         }

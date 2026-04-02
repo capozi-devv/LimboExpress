@@ -6,6 +6,7 @@ import dev.doctor4t.wathe.client.gui.screen.ingame.LimitedInventoryScreen;
 import dev.doctor4t.wathe.game.GameConstants;
 import dev.doctor4t.wathe.util.ShopEntry;
 import net.capozi.limbo_express.common.ModifiedGameConstants;
+import net.capozi.limbo_express.foundation.MapEffectInit;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -31,24 +32,26 @@ public class LimitedInventoryScreenMixin extends LimitedHandledScreen<PlayerScre
     protected void init(CallbackInfo ci) {
         super.init();
         PlayerEntity objectPlayer = ((LimitedInventoryScreen)(Object)this).player;
-        if (GameWorldComponent.KEY.get(objectPlayer.getWorld()).isInnocent(objectPlayer) || GameWorldComponent.KEY.get(objectPlayer.getWorld()).isInnocent(objectPlayer)) {
-            List<ShopEntry> entries = ModifiedGameConstants.CIVILIAN_SHOP_ENTRIES;
-            int apart = 38;
-            int x = this.width / 2 - entries.size() * apart / 2 + 9;
-            int y = this.y - 46;
-            for (int i = 0; i < entries.size(); i++) {
-                this.addDrawableChild(new LimitedInventoryScreen.StoreItemWidget(((LimitedInventoryScreen)(Object)this), x + apart * i, y, entries.get(i), i));
+        if (GameWorldComponent.KEY.get(objectPlayer.getWorld()).getMapEffect().equals(MapEffectInit.LIMBO)) {
+            if (GameWorldComponent.KEY.get(objectPlayer.getWorld()).isInnocent(objectPlayer) || GameWorldComponent.KEY.get(objectPlayer.getWorld()).isInnocent(objectPlayer)) {
+                List<ShopEntry> entries = ModifiedGameConstants.CIVILIAN_SHOP_ENTRIES;
+                int apart = 38;
+                int x = this.width / 2 - entries.size() * apart / 2 + 9;
+                int y = this.y - 46;
+                for (int i = 0; i < entries.size(); i++) {
+                    this.addDrawableChild(new LimitedInventoryScreen.StoreItemWidget(((LimitedInventoryScreen)(Object)this), x + apart * i, y, entries.get(i), i));
+                }
+            } else if (GameWorldComponent.KEY.get(objectPlayer.getWorld()).canUseKillerFeatures(objectPlayer)) {
+                List<ShopEntry> entries = ModifiedGameConstants.MODIFIED_KILLER_SHOP_ENTRIES;
+                int apart = 38;
+                int x = this.width / 2 - entries.size() * apart / 2 + 9;
+                int y = this.y - 46;
+                for (int i = 0; i < entries.size(); i++) {
+                    this.addDrawableChild(new LimitedInventoryScreen.StoreItemWidget(((LimitedInventoryScreen)(Object)this), x + apart * i, y, entries.get(i), i));
+                }
             }
-        } else if (GameWorldComponent.KEY.get(objectPlayer.getWorld()).canUseKillerFeatures(objectPlayer)) {
-            List<ShopEntry> entries = ModifiedGameConstants.MODIFIED_KILLER_SHOP_ENTRIES;
-            int apart = 38;
-            int x = this.width / 2 - entries.size() * apart / 2 + 9;
-            int y = this.y - 46;
-            for (int i = 0; i < entries.size(); i++) {
-                this.addDrawableChild(new LimitedInventoryScreen.StoreItemWidget(((LimitedInventoryScreen)(Object)this), x + apart * i, y, entries.get(i), i));
-            }
+            ci.cancel();
         }
-        ci.cancel();
     }
     @Overwrite
     protected void drawBackground(DrawContext context, float v, int i, int i1) {
