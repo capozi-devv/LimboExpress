@@ -18,46 +18,50 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
+import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static dev.doctor4t.wathe.client.util.WatheItemTooltips.COOLDOWN_COLOR;
 
 public class ModifiedGameFunctions {
-    @SuppressWarnings("all")
-    public static boolean triggerSwap(ServerWorld world, PlayerEntity killer) {
-        List<ServerPlayerEntity> rawPlayers = world.getPlayers();
-        Map<ServerPlayerEntity, BlockPos> playerPositionMap = new HashMap<>();
-        List<ServerPlayerEntity> playerCheck = new ArrayList<>();
+    public static boolean triggerSwap(World world, PlayerEntity killer) {
+        List<? extends PlayerEntity> rawPlayers = world.getPlayers();
+        Map<PlayerEntity, BlockPos> playerPositionMap = new HashMap<>();
+        List<PlayerEntity> playerCheck = new ArrayList<>();
+        List<BlockPos> blockCheck = new ArrayList<>();
         if (world != null) {
-            for (ServerPlayerEntity player : rawPlayers) {
+            for (PlayerEntity player : rawPlayers) {
                 if (GameFunctions.isPlayerAliveAndSurvival(player)) {
                     playerPositionMap.put(player, player.getBlockPos());
                     playerCheck.add(player);
+                    blockCheck.add(player.getBlockPos());
                 }
             }
-            for (ServerPlayerEntity player : playerCheck) {
+            Iterator<PlayerEntity> playerCheckIterator = playerCheck.iterator();
+            while (playerCheckIterator.hasNext()) {
                 int index = Random.create().nextBetween(0, playerCheck.size());
-                BlockPos tpPos = playerCheck.get(index).getBlockPos();
+                int index2 = Random.create().nextBetween(0, playerCheck.size());
+                PlayerEntity player = playerCheck.get(index);
+                BlockPos tpPos = blockCheck.get(index2);
                 if (tpPos == playerPositionMap.get(player)) {
                     if (playerCheck.size() <= 1) {
                         player.playSoundToPlayer(SoundInit.SWAP, SoundCategory.PLAYERS, 1f, 1f);
                         player.sendMessage(Text.translatable("message.limbo_express.player.swap_fail"));
-                        return true;
+                        break;
                     }
-                    index++;
-                    tpPos = playerCheck.get(index).getBlockPos();
+                    index2++;
+                    tpPos = playerCheck.get(index2).getBlockPos();
                 }
-                player.teleport(world, tpPos.getX(), tpPos.getY(), tpPos.getZ(), player.headYaw, player.prevPitch);
-                player.playSoundToPlayer(SoundInit.SWAP, SoundCategory.PLAYERS, 1f, 1f);
+                player.teleport(tpPos.getX(), tpPos.getY(), tpPos.getZ(), false);
+                player.playSound(SoundInit.SWAP, 1f, 1f);
                 playerCheck.remove(index);
                 playerPositionMap.remove(player);
+                blockCheck.remove(index2);
             }
             PlayerSwapComponent.KEY.get(killer).setCooldown(ModifiedGameConstants.swapCooldown);
+            killer.getItemCooldownManager().set(ItemInit.SWAP, ModifiedGameConstants.swapCooldown);
             return true;
         }
         return true;

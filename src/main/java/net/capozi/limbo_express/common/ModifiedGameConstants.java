@@ -23,8 +23,7 @@ public interface ModifiedGameConstants {
             public boolean onBuy(PlayerEntity player) {
                 if (PlayerSwapComponent.KEY.get(player).getCooldown() != 0) return false;
                 if (player != null) {
-                    player.getItemCooldownManager().set(ItemInit.SWAP, ModifiedGameConstants.swapCooldown);
-                    return ModifiedGameFunctions.triggerSwap(player.getServer().getOverworld(), player);
+                    return ModifiedGameFunctions.triggerSwap(player.getWorld(), player);
                 }
                 return false;
             }
@@ -47,13 +46,13 @@ public interface ModifiedGameConstants {
                 return ShopFunctions.onBuy(player, this);
             }
         });
-        entries.add(new ShopEntry(new ItemStack(WatheItems.NOTE, 4), 25, ShopEntry.Type.TOOL) {
+        entries.add(new ShopEntry(new ItemStack(ItemInit.SANITY_PILLS, 1), 150, ShopEntry.Type.POISON) {
             @Override
             public boolean onBuy(@NotNull PlayerEntity player) {
                 return ShopFunctions.onBuy(player, this);
             }
         });
-        entries.add(new ShopEntry(new ItemStack(ItemInit.SANITY_PILLS, 1), 150, ShopEntry.Type.TOOL) {
+        entries.add(new ShopEntry(new ItemStack(WatheItems.NOTE, 4), 25, ShopEntry.Type.TOOL) {
             @Override
             public boolean onBuy(@NotNull PlayerEntity player) {
                 return ShopFunctions.onBuy(player, this);

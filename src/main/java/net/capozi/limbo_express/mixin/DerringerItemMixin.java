@@ -23,7 +23,7 @@ public class DerringerItemMixin {
         GameWorldComponent gameWorldComponent = GameWorldComponent.KEY.get(user.getWorld());
         if (gameWorldComponent.getRole(user).getMoodType().equals(Role.MoodType.REAL)) {
             user.getStackInHand(hand).decrement(1);
-            user.playSoundToPlayer(SoundEvents.ITEM_SHIELD_BREAK, SoundCategory.PLAYERS, 1f, 1f);
+            user.playSound(SoundEvents.ITEM_SHIELD_BREAK, 1f, 1f);
         }
     }
 }

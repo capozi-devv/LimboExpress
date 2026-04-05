@@ -17,8 +17,8 @@
   "tip.letter.room.panoramic_suite": "the Panoramic Suite",
   "tip.letter.room.silk_suite": "the Silk Suite",
   "tip.letter.room.aqua_suite": "the Aqua Suite",
-  "tip.letter.name.limbo": "Dear %s, welcome aboard the §kLimbo Express§r.",
-  "tip.letter.tooltip1.limbo": "%s for your trip on the §k1st§r of §kJanuary§r, 19§k23§r.",
-  "tip.letter.tooltip2.limbo": "The §kLimbo§r Consolidation we§kcomes you to your.",
-  "tip.letter.illegible": "§oThe rest of the letter is illegible..."
+  "tip.letter.name.limbo": "Dear %s, welcome aboard the §kLimbo Expres§rs.",
+  "tip.letter.tooltip1.limbo": "%s for your trip on the §k1st§r of §kMarch§r, 19§k10§r.",
+  "tip.letter.tooltip2.limbo": "The §kLimbo§r Conso§kli§rdati§ko§rn we§kcomes you to your.",
+  "tip.letter.illegible": "§o§7The rest of the letter is illegible..."
 }
