@@ -8,6 +8,7 @@ import dev.doctor4t.wathe.index.WatheItems;
 import dev.doctor4t.wathe.index.WatheSounds;
 import net.capozi.limbo_express.common.cca.CivilianInstinctComponent;
 import net.capozi.limbo_express.common.cca.OverdoseComponent;
+import net.capozi.limbo_express.common.cca.PlayerAnonymityComponent;
 import net.capozi.limbo_express.common.cca.PlayerSwapComponent;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -34,7 +35,7 @@ public class GameFunctionsMixin {
             OverdoseComponent.KEY.get(serverPlayerEntity).reset();
             CivilianInstinctComponent.KEY.get(serverPlayerEntity).reset();
             PlayerSwapComponent.KEY.get(serverPlayerEntity).reset();
-
+            PlayerAnonymityComponent.KEY.get(serverPlayerEntity).reset();
             // remove item cooldowns
             HashSet<Item> copy = new HashSet<>(serverPlayerEntity.getItemCooldownManager().entries.keySet());
             for (Item item : copy) serverPlayerEntity.getItemCooldownManager().remove(item);

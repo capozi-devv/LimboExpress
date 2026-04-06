@@ -9,7 +9,6 @@
     "PlayerMoodComponentMixin",
     "RevolverItemMixin",
     "StoreBuyPayloadReceiverMixin",
-    "WatheMixin",
     "access.PlayerShopComponentAccessor",
     "client.MoodRendererMixin",
     "client.StoreRendererMixin"
@@ -18,6 +17,7 @@
     "client.HeldItemFeatureRendererMixin",
     "client.LimitedInventoryScreenMixin",
     "client.MinecraftClientMixin",
+    "client.PlayerEntityRendererMixin",
     "client.WorldRendererMixin"
   ],
   "injectors": {

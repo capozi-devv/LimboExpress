@@ -3,6 +3,7 @@ package net.capozi.limbo_express.common.game.function;
 import dev.doctor4t.wathe.game.GameFunctions;
 import net.capozi.limbo_express.common.ModifiedGameConstants;
 import net.capozi.limbo_express.common.cca.CivilianInstinctComponent;
+import net.capozi.limbo_express.common.cca.PlayerAnonymityComponent;
 import net.capozi.limbo_express.common.cca.PlayerSwapComponent;
 import net.capozi.limbo_express.foundation.ItemInit;
 import net.capozi.limbo_express.foundation.SoundInit;
@@ -92,5 +93,16 @@ public class ModifiedGameFunctions {
                 tooltipList.add(Text.translatable("tip.cooldown", countdown).withColor(COOLDOWN_COLOR));
             }
         }
+    }
+    public static boolean anonymize(PlayerEntity player) {
+        PlayerAnonymityComponent component = PlayerAnonymityComponent.KEY.get(player);
+        if (!component.isAnonymous()) {
+            if (component.getCooldown() != 0) return false;
+            component.setAnonymous(true);
+            component.setCooldown(ModifiedGameConstants.civilianSightCooldown);
+            player.getItemCooldownManager().set(ItemInit.ANONYMITY, ModifiedGameConstants.civilianSightCooldown);
+            return true;
+        }
+        return false;
     }
 }

@@ -46,7 +46,7 @@ public interface ModifiedGameConstants {
                 return ShopFunctions.onBuy(player, this);
             }
         });
-        entries.add(new ShopEntry(new ItemStack(ItemInit.SANITY_PILLS, 1), 150, ShopEntry.Type.POISON) {
+        entries.add(new ShopEntry(new ItemStack(ItemInit.SANITY_PILLS, 1), 300, ShopEntry.Type.POISON) {
             @Override
             public boolean onBuy(@NotNull PlayerEntity player) {
                 return ShopFunctions.onBuy(player, this);
@@ -58,10 +58,16 @@ public interface ModifiedGameConstants {
                 return ShopFunctions.onBuy(player, this);
             }
         });
-        entries.add(new ShopEntry(new ItemStack(ItemInit.CIVILIAN_SIGHT), 350, ShopEntry.Type.TOOL) {
+        entries.add(new ShopEntry(new ItemStack(ItemInit.CIVILIAN_SIGHT), 250, ShopEntry.Type.TOOL) {
             @Override
             public boolean onBuy(@NotNull PlayerEntity player) {
                 return ModifiedGameFunctions.activateCivilianSight(player);
+            }
+        });
+        entries.add(new ShopEntry(new ItemStack(ItemInit.ANONYMITY), 250, ShopEntry.Type.TOOL) {
+            @Override
+            public boolean onBuy(@NotNull PlayerEntity player) {
+                return ModifiedGameFunctions.anonymize(player);
             }
         });
     });

@@ -1,0 +1,94 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": {
+        "type": "minecraft:uniform",
+        "min": 0,
+        "max": 1
+      },
+      "bonus_rolls": 0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:bundle",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "minecraft:set_contents",
+              "component": "minecraft:bundle_contents",
+              "entries": [
+                {
+                  "type": "minecraft:loot_table",
+                  "value": {
+                    "type": "minecraft:generic",
+                    "pools": [
+                      {
+                        "rolls": {
+                          "type": "minecraft:uniform",
+                          "min": 1,
+                          "max": 3
+                        },
+                        "bonus_rolls": {
+                          "type": "minecraft:uniform",
+                          "min": 0,
+                          "max": 1
+                        },
+                        "entries": [
+                          {
+                            "type": "minecraft:item",
+                            "name": "limbo_express:coin",
+                            "weight": 1
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "weight": 1,
+                  "conditions": []
+                }
+              ]
+            },
+            {
+              "function": "minecraft:set_name",
+              "entity": "this",
+              "name": {
+                "translate": "item.name.limbo_express.coin_purse",
+                "fallback": "Coin Purse",
+                "type": "translatable",
+                "color": "#ffffff",
+                "bold": false,
+                "italic": false
+              },
+              "target": "item_name"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rolls": {
+        "type": "minecraft:uniform",
+        "min": 1,
+        "max": 9
+      },
+      "bonus_rolls": {
+        "type": "minecraft:uniform",
+        "min": 0,
+        "max": 2
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "wathe:note",
+          "weight": 4
+        },
+        {
+          "type": "minecraft:item",
+          "name": "limbo_express:coin",
+          "weight": 5
+        }
+      ]
+    }
+  ]
+}
