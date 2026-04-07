@@ -18,12 +18,21 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(PlayerEntityRenderer.class)
 public class PlayerEntityRendererMixin {
     @Inject(method = "getTexture(Lnet/minecraft/client/network/AbstractClientPlayerEntity;)Lnet/minecraft/util/Identifier;", at = @At("HEAD"), cancellable = true)
-    private void limboExpress$psychoSkinTexture(AbstractClientPlayerEntity abstractClientPlayerEntity, CallbackInfoReturnable<Identifier> cir) {
+    private void limboExpress$getTexture(AbstractClientPlayerEntity abstractClientPlayerEntity, CallbackInfoReturnable<Identifier> cir) {
         if (PlayerAnonymityComponent.KEY.get(abstractClientPlayerEntity).isAnonymous()) {
             SkinTextures.Model model = abstractClientPlayerEntity.getSkinTextures().model();
             String suffix = (model == SkinTextures.Model.SLIM) ? "_thin" : "";
-            Identifier texture = LimboExpress.id("textures/entity/anonymous" + ".png");
+            Identifier texture = LimboExpress.id("textures/entity/anonymous" + suffix + ".png");
             cir.setReturnValue(texture);
         }
+    }
+    @ModifyVariable(method = "renderArm", at = @At("STORE"), ordinal = 0)
+    private Identifier limboExpress$renderArm(Identifier skinTexture) {
+        if (PlayerAnonymityComponent.KEY.get(MinecraftClient.getInstance().player).isAnonymous()) {
+            SkinTextures.Model model = MinecraftClient.getInstance().player.getSkinTextures().model();
+            String suffix = model == SkinTextures.Model.SLIM ? "_thin" : "";
+            return LimboExpress.id("textures/entity/anonymous" + suffix + ".png");
+        }
+        return skinTexture;
     }
 }

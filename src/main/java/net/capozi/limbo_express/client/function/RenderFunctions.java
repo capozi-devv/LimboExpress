@@ -18,9 +18,9 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 
 public class RenderFunctions {
-    public static final Identifier MOOD_HAPPY = LimboExpress.id("textures/gui/hud/mood_happy.png");
-    public static final Identifier MOOD_MID = LimboExpress.id("textures/gui/hud/mood_mid.png");
-    public static final Identifier MOOD_DEPRESSIVE = LimboExpress.id("textures/gui/hud/mood_depressive.png");
+    public static final Identifier MOOD_HAPPY = LimboExpress.id("gui/hud/mood_happy.png");
+    public static final Identifier MOOD_MID = LimboExpress.id("gui/hud/mood_mid.png");
+    public static final Identifier MOOD_DEPRESSIVE = LimboExpress.id("gui/hud/mood_depressive.png");
     public static int getInstinctHighlight(Entity target) {
         if (CivilianInstinctComponent.KEY.get(MinecraftClient.getInstance().player).hasCivilianInstinct()) {
             if (target instanceof PlayerBodyEntity) return 0x990000;
