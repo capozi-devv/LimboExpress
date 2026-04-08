@@ -11,7 +11,8 @@
     "StoreBuyPayloadReceiverMixin",
     "access.PlayerShopComponentAccessor",
     "client.MoodRendererMixin",
-    "client.StoreRendererMixin"
+    "client.StoreRendererMixin",
+    "WatheClientMixin"
   ],
   "client": [
     "client.HeldItemFeatureRendererMixin",
