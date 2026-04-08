@@ -24,18 +24,19 @@ public class LimboMapEffect extends HarpyExpressTrainMapEffect {
     @Override
     public void initializeMapEffects(ServerWorld serverWorld, List<ServerPlayerEntity> players) {
         TrainWorldComponent trainWorldComponent = TrainWorldComponent.KEY.get(serverWorld);
+        trainWorldComponent.setTimeOfDay(TrainWorldComponent.TimeOfDay.NIGHT);
         trainWorldComponent.setSnow(false);
         trainWorldComponent.setFog(false);
         trainWorldComponent.setHud(true);
         trainWorldComponent.setSpeed(130);
-        trainWorldComponent.setTime(18000);
+        trainWorldComponent.setTime(0);
         Collections.shuffle(players);
         int roomNumber = 0;
         for (ServerPlayerEntity serverPlayerEntity : players) {
             ItemStack itemStack = new ItemStack(WatheItems.KEY);
             roomNumber = roomNumber % 7 + 1;
             int finalRoomNumber = roomNumber;
-            itemStack.apply(DataComponentTypes.LORE, LoreComponent.DEFAULT, component -> new LoreComponent(Text.literal(switch (finalRoomNumber) {
+            itemStack.apply(DataComponentTypes.LORE, LoreComponent.DEFAULT, component -> new LoreComponent(Text.literal(switch(finalRoomNumber) {
                 case 1 -> "Grand Suite";
                 case 2 -> "Master Suite";
                 case 3 -> "Panoramic Suite";

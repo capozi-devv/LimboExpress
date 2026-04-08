@@ -46,6 +46,10 @@ public class PlayerAnonymityComponent implements AutoSyncedComponent, ClientTick
         return cooldownTicks = cooldown;
     }
 
+    public int getActiveTicks() {
+        return activeTicks;
+    }
+
     @Override
     public void clientTick() {
         sync();

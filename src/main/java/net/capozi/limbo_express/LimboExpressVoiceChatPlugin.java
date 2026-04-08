@@ -46,23 +46,23 @@ public class LimboExpressVoiceChatPlugin implements VoicechatPlugin {
         if (!LimboExpress.downpitchVoicePlayers.contains(senderUUID)) {
             return;
         }
-        byte[] opusData = event.getPacket().getOpusEncodedData();
-        byte[] processedOpusData = processOpusAudioForAnon(senderUUID, opusData);
-        event.getPacket().setOpusEncodedData(processedOpusData);
+//        byte[] opusData = event.getPacket().getOpusEncodedData();
+//        byte[] processedOpusData = processOpusAudioForAnon(senderUUID, opusData);
+//        event.getPacket().setOpusEncodedData(processedOpusData);
     }
-    private byte[] processOpusAudioForAnon(UUID uuid, byte[] opusData) {
-        try {
-            short[] pcmData = decoder.decode(opusData);
-            if (pcmData == null) {
-                System.out.println("Failed to decode Opus data");
-                return opusData;
-            }
-            short[] processedPcm = DownpitchVoice.applyEffect(uuid, pcmData);
-
-            return encoder.encode(processedPcm);
-        } catch (Exception e) {
-            System.out.println("Error processing Opus audio");
-            return opusData;
-        }
-    }
+//    private byte[] processOpusAudioForAnon(UUID uuid, byte[] opusData) {
+//        try {
+//            short[] pcmData = decoder.decode(opusData);
+//            if (pcmData == null) {
+//                System.out.println("Failed to decode Opus data");
+//                return opusData;
+//            }
+//            short[] processedPcm = DownpitchVoice.applyEffect(uuid, pcmData);
+//
+//            return encoder.encode(processedPcm);
+//        } catch (Exception e) {
+//            System.out.println("Error processing Opus audio");
+//            return opusData;
+//        }
+//    }
 }
