@@ -2,7 +2,7 @@
 	"format_version": "1.9.0",
 	"credit": "Made with Blockbench",
 	"textures": {
-		"1": "limbo_express:entity/anonymous_thin"
+		"1": "limbo_express:entity/anonymous"
 	},
 	"elements": [
 		{

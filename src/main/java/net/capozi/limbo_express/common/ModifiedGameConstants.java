@@ -20,17 +20,19 @@ public interface ModifiedGameConstants {
         entries.add(new ShopEntry(WatheItems.KNIFE.getDefaultStack(), 100, ShopEntry.Type.WEAPON));
         entries.add(new ShopEntry(ItemInit.SWAP.getDefaultStack(), 350, ShopEntry.Type.WEAPON) {
             @Override
-            public boolean onBuy(PlayerEntity player) {
+            public boolean onBuy(@NotNull PlayerEntity player) {
                 if (PlayerSwapComponent.KEY.get(player).getCooldown() != 0) return false;
-                if (player != null) {
-                    return ModifiedGameFunctions.triggerSwap(player.getWorld(), player);
-                }
-                return false;
+                return ModifiedGameFunctions.triggerSwap(player.getWorld(), player);
             }
         });
         entries.add(new ShopEntry(WatheItems.GRENADE.getDefaultStack(), 200, ShopEntry.Type.WEAPON));
-        entries.add(new ShopEntry(ItemInit.INSANITY_PILLS.getDefaultStack(), 50, ShopEntry.Type.POISON));
         entries.add(new ShopEntry(WatheItems.SCORPION.getDefaultStack(), 75, ShopEntry.Type.POISON));
+        entries.add(new ShopEntry(new ItemStack(ItemInit.ANONYMITY), 250, ShopEntry.Type.TOOL) {
+            @Override
+            public boolean onBuy(@NotNull PlayerEntity player) {
+                return ModifiedGameFunctions.anonymize(player);
+            }
+        });
         entries.add(new ShopEntry(WatheItems.LOCKPICK.getDefaultStack(), 50, ShopEntry.Type.TOOL));
         entries.add(new ShopEntry(WatheItems.BLACKOUT.getDefaultStack(), 300, ShopEntry.Type.TOOL) {
             @Override

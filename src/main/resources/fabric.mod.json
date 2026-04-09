@@ -21,9 +21,6 @@
     ],
     "cardinal-components": [
       "net.capozi.limbo_express.LimboExpressComponents"
-    ],
-    "voicechat": [
-      "net.capozi.limbo_express.LimboExpressVoiceChatPlugin"
     ]
   },
   "mixins": [
