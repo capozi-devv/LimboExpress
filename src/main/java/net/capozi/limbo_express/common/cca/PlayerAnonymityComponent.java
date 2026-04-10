@@ -1,6 +1,7 @@
 package net.capozi.limbo_express.common.cca;
 
 import net.capozi.limbo_express.LimboExpress;
+import net.capozi.limbo_express.common.ModifiedGameConstants;
 import net.capozi.limbo_express.foundation.ItemInit;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
@@ -57,9 +58,9 @@ public class PlayerAnonymityComponent implements AutoSyncedComponent, ClientTick
     @Override
     public void serverTick() {
         sync();
-        if (cooldownTicks > 2400) activeTicks++;
+        if (cooldownTicks > ModifiedGameConstants.swapCooldown) activeTicks++;
         if (cooldownTicks > 0) cooldownTicks--;
-        if (activeTicks >= 1200) {
+        if (activeTicks >= 3000) {
             this.isAnonymous = false;
             activeTicks = 0;
         }

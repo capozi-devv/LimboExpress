@@ -99,8 +99,8 @@ public class ModifiedGameFunctions {
         if (!component.isAnonymous()) {
             if (component.getCooldown() != 0) return false;
             component.setAnonymous(true);
-            component.setCooldown(ModifiedGameConstants.civilianSightCooldown);
-            player.getItemCooldownManager().set(ItemInit.ANONYMITY, ModifiedGameConstants.civilianSightCooldown);
+            component.setCooldown(ModifiedGameConstants.swapCooldown);
+            player.getItemCooldownManager().set(ItemInit.ANONYMITY, ModifiedGameConstants.swapCooldown);
             return true;
         }
         return false;
