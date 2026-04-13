@@ -22,5 +22,6 @@ public class AnonymityItem extends Item {
         tooltip.add(1, Text.translatable("item.limbo_express.anonymity.tooltipLine1"));
         tooltip.add(2, Text.translatable("item.limbo_express.anonymity.tooltipLine2"));
         tooltip.add(3, Text.translatable("item.limbo_express.anonymity.tooltipLine3"));
+        tooltip.add(4, Text.translatable("item.limbo_express.anonymity.tooltipLine4"));
     }
 }
