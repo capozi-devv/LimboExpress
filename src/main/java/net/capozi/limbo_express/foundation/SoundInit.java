@@ -9,7 +9,7 @@ import net.minecraft.util.Identifier;
 public class SoundInit {
     private static Registrar<SoundEvent> soundEventRegistrar = new Registrar<SoundEvent>(LimboExpress.MOD_ID, Registries.SOUND_EVENT);
     public static void init() {
-        soundEventRegistrar.setRegistries();
+        soundEventRegistrar.setRegistries(soundEventRegistrar.entries, soundEventRegistrar.registry_consumer);
     }
-    public static final SoundEvent SWAP = soundEventRegistrar.add("swap", SoundEvent.of(Identifier.of("swap")));
+    public static final SoundEvent SWAP = soundEventRegistrar.add(Identifier.of(LimboExpress.MOD_ID, "swap"), SoundEvent.of(Identifier.of("swap")));
 }

@@ -7,6 +7,7 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
 import net.minecraft.client.render.RenderLayer;
+import net.minecraft.item.Items;
 
 public class LimboExpressClient implements ClientModInitializer {
 

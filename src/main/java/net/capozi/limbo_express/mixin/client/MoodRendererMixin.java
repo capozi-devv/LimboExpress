@@ -5,6 +5,7 @@ import dev.doctor4t.wathe.api.WatheRoles;
 import dev.doctor4t.wathe.cca.GameWorldComponent;
 import dev.doctor4t.wathe.cca.PlayerMoodComponent;
 import dev.doctor4t.wathe.client.gui.MoodRenderer;
+import net.capozi.limbo_express.client.function.RenderFunctions;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
@@ -17,10 +18,8 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
-import static net.capozi.limbo_express.client.function.RenderFunctions.*;
-
 @Mixin(MoodRenderer.class)
-public class MoodRendererMixin {;
+public class MoodRendererMixin {
     @Shadow
     public static float moodRender = 0f;
     @Shadow
@@ -39,15 +38,15 @@ public class MoodRendererMixin {;
     @Redirect(method = "renderHud", at = @At(value = "INVOKE", target = "Ldev/doctor4t/wathe/client/gui/MoodRenderer;renderCivilian(Lnet/minecraft/client/font/TextRenderer;Lnet/minecraft/client/gui/DrawContext;F)V"))
     private static void limboExpress$renderHud(TextRenderer textRenderer, DrawContext context, float prevMood, @Local(name = "gameWorldComponent") GameWorldComponent game, @Local(name = "player") PlayerEntity player) {
         if ((game.isRole(player, WatheRoles.VIGILANTE) || game.isRole(player, WatheRoles.CIVILIAN))) {
-            Identifier mood = MOOD_HAPPY;
+            Identifier mood = RenderFunctions.MOOD_HAPPY;
             if (moodRender < 0.2F) {
-                mood = MOOD_DEPRESSIVE;
+                mood = RenderFunctions.MOOD_DEPRESSIVE;
             } else if (moodRender < 0.55F) {
-                mood = MOOD_MID;
+                mood = RenderFunctions.MOOD_MID;
             }
             context.getMatrices().push();
             context.getMatrices().translate(0, 3 * moodOffset, 0);
-            context.drawGuiTexture(mood, 5, 6, 14, 17);
+            context.drawTexture(mood, 5, 6, 0, 0, 14, 17, 14, 17);
             context.getMatrices().pop();
             context.getMatrices().push();
             context.getMatrices().translate(0, 10 * moodOffset, 0);

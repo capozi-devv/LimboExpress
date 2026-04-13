@@ -4,15 +4,16 @@
   "package": "net.capozi.limbo_express.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "DerringerItemMixin",
     "GameFunctionsMixin",
+    "GunShootPayloadReceiverMixin",
     "PlayerMoodComponentMixin",
     "RevolverItemMixin",
     "StoreBuyPayloadReceiverMixin",
+    "WatheClientMixin",
     "access.PlayerShopComponentAccessor",
     "client.MoodRendererMixin",
-    "client.StoreRendererMixin",
-    "WatheClientMixin"
+    "client.RoleNameRendererMixin",
+    "client.StoreRendererMixin"
   ],
   "client": [
     "client.HeldItemFeatureRendererMixin",

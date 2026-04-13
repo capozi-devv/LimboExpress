@@ -4,6 +4,7 @@ import dev.doctor4t.wathe.cca.PlayerShopComponent;
 import dev.doctor4t.wathe.index.WatheSounds;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.StackReference;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.tooltip.TooltipType;
@@ -25,7 +26,7 @@ public class CoinItem extends Item {
         super(settings);
     }
     @Override
-    public boolean onStackClicked(ItemStack stack, Slot slot, ClickType clickType, PlayerEntity player) {
+    public boolean onClicked(ItemStack stack, ItemStack otherStack, Slot slot, ClickType clickType, PlayerEntity player, StackReference cursorStackReference) {
         PlayerShopComponent shop = PlayerShopComponent.KEY.get(player);
         if (clickType.equals(ClickType.RIGHT)) {
             stack.decrement(1);
