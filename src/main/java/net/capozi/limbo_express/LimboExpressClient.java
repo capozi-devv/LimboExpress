@@ -1,10 +1,12 @@
 package net.capozi.limbo_express;
 
+import net.capozi.limbo_express.client.hud.ComponentTimeRenderer;
 import net.capozi.limbo_express.common.game.function.ModifiedGameFunctions;
 import net.capozi.limbo_express.foundation.BlockInit;
 import net.capozi.limbo_express.foundation.ItemInit;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.item.Items;
@@ -17,6 +19,9 @@ public class LimboExpressClient implements ClientModInitializer {
             ModifiedGameFunctions.addCooldownText(ItemInit.SWAP, tooltipList, itemStack);
             ModifiedGameFunctions.addCooldownText(ItemInit.CIVILIAN_SIGHT, tooltipList, itemStack);
             ModifiedGameFunctions.addCooldownText(ItemInit.ANONYMITY, tooltipList, itemStack);
+        });
+        ClientTickEvents.START_CLIENT_TICK.register(minecraftClient -> {
+            ComponentTimeRenderer.tick();
         });
         BlockRenderLayerMap.INSTANCE.putBlock(BlockInit.SILVER_ORNAMENT, RenderLayer.getCutout());
     }

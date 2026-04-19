@@ -30,6 +30,7 @@ public class GunShootPayloadReceiverMixin {
                 Scheduler.schedule(() -> {
                     if (player.getInventory().contains((s) -> s.isIn(WatheItemTags.GUNS))) {
                         PlayerMoodComponent.KEY.get(player).setMood(0.0F);
+                        player.getMainHandStack().decrement(1);
                     }
                 }, 4);
             }

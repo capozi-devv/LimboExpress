@@ -17,6 +17,7 @@
   ],
   "client": [
     "client.HeldItemFeatureRendererMixin",
+    "client.InGameHudMixin",
     "client.LimitedInventoryScreenMixin",
     "client.MinecraftClientMixin",
     "client.PlayerEntityRendererMixin",

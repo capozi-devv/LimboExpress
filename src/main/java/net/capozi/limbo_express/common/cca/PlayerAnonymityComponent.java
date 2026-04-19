@@ -57,8 +57,7 @@ public class PlayerAnonymityComponent implements AutoSyncedComponent, ClientTick
     }
     @Override
     public void serverTick() {
-        sync();
-        if (cooldownTicks > ModifiedGameConstants.swapCooldown) activeTicks++;
+        if (this.isAnonymous) activeTicks++;
         if (cooldownTicks > 0) cooldownTicks--;
         if (activeTicks >= 3000) {
             this.isAnonymous = false;
@@ -69,9 +68,11 @@ public class PlayerAnonymityComponent implements AutoSyncedComponent, ClientTick
     @Override
     public void readFromNbt(NbtCompound tag, RegistryWrapper.WrapperLookup registryLookup) {
         this.isAnonymous = tag.contains("anonymous") ? tag.getBoolean("anonymous") : false;
+        this.activeTicks = tag.getInt("activeTicks");
     }
     @Override
     public void writeToNbt(NbtCompound tag, RegistryWrapper.WrapperLookup registryLookup) {
         tag.putBoolean("anonymous", isAnonymous);
+        tag.putInt("activeTicks", activeTicks);
     }
 }

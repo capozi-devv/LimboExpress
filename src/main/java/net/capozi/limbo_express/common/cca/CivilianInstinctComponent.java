@@ -70,10 +70,12 @@ public class CivilianInstinctComponent implements AutoSyncedComponent, ServerTic
     @Override
     public void readFromNbt(NbtCompound tag, RegistryWrapper.WrapperLookup registryLookup) {
         this.hasCivilianInstinct = tag.contains("civilian_instinct") ? tag.getBoolean("civilian_instinct") : false;
+        this.activeTicks = tag.getInt("activeTicks");
     }
 
     @Override
     public void writeToNbt(NbtCompound tag, RegistryWrapper.WrapperLookup registryLookup) {
         tag.putBoolean("civilian_instinct", hasCivilianInstinct);
+        tag.putInt("activeTicks", activeTicks);
     }
 }
