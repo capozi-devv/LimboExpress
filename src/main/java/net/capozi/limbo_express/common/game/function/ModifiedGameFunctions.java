@@ -29,38 +29,55 @@ import static dev.doctor4t.wathe.client.util.WatheItemTooltips.COOLDOWN_COLOR;
 
 public class ModifiedGameFunctions {
     public static boolean triggerSwap(World world, PlayerEntity killer) {
-        List<? extends PlayerEntity> rawPlayers = world.getPlayers();
-        Map<PlayerEntity, BlockPos> playerPositionMap = new HashMap<>();
-        List<PlayerEntity> playerCheck = new ArrayList<>();
-        List<BlockPos> blockCheck = new ArrayList<>();
-        if (world != null) {
-            for (PlayerEntity player : rawPlayers) {
-                if (GameFunctions.isPlayerAliveAndSurvival(player)) {
-                    playerPositionMap.put(player, player.getBlockPos());
-                    playerCheck.add(player);
-                    blockCheck.add(player.getBlockPos());
-                }
+        List<ServerPlayerEntity> players = new ArrayList<>();
+
+        for (PlayerEntity player : world.getPlayers()) {
+            if (GameFunctions.isPlayerAliveAndSurvival(player) && player instanceof ServerPlayerEntity serverPlayer) {
+                players.add(serverPlayer);
             }
-            playerPositionMap.forEach((player, pos) -> {
-                int index2 = Random.create().nextBetween(0, blockCheck.size() - 1);
-                BlockPos tpPos = blockCheck.get(index2);
-                if (tpPos.equals(pos)) {
-                    if (playerCheck.size() <= 1) {
-                        player.playSoundToPlayer(SoundInit.SWAP, SoundCategory.PLAYERS, 1f, 1f);
-                        player.sendMessage(Text.translatable("message.limbo_express.player.swap_fail"));
-                    }
-                    index2++;
-                    tpPos = blockCheck.get(index2);
-                }
-                player.teleport(tpPos.getX(), tpPos.getY(), tpPos.getZ(), false);
-                player.playSound(SoundInit.SWAP, 1f, 1f);
-                blockCheck.remove(pos);
-                playerCheck.remove(player);
-            });
-//            PlayerSwapComponent.KEY.get(killer).setCooldown(ModifiedGameConstants.swapCooldown);
-//            killer.getItemCooldownManager().set(ItemInit.SWAP, ModifiedGameConstants.swapCooldown);
-            return true;
         }
+
+        if (players.size() < 2) {
+            killer.sendMessage(Text.translatable("message.limbo_express.player.swap_fail"));
+            return false;
+        }
+
+        List<BlockPos> positions = new ArrayList<>();
+
+        for (ServerPlayerEntity player : players) {
+            positions.add(player.getBlockPos());
+        }
+
+        Collections.shuffle(positions);
+
+        for (int i = 0; i < players.size(); i++) {
+            if (positions.get(i).equals(players.get(i).getBlockPos())) {
+                int swap = (i + 1) % players.size();
+
+                BlockPos tmp = positions.get(i);
+                positions.set(i, positions.get(swap));
+                positions.set(swap, tmp);
+            }
+        }
+        for (int i = 0; i < players.size(); i++) {
+            ServerPlayerEntity player = players.get(i);
+            BlockPos target = positions.get(i);
+
+            player.teleport(
+                    (ServerWorld) world,
+                    target.getX() + 0.5,
+                    target.getY(),
+                    target.getZ() + 0.5,
+                    player.getYaw(),
+                    player.getPitch()
+            );
+
+            player.playSound(SoundInit.SWAP, 1f, 1f);
+        }
+
+        //    PlayerSwapComponent.KEY.get(killer).setCooldown(ModifiedGameConstants.swapCooldown);
+        //    killer.getItemCooldownManager().set(ItemInit.SWAP, ModifiedGameConstants.swapCooldown);
+
         return true;
     }
     public static boolean activateCivilianSight(PlayerEntity user) {
