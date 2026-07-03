@@ -6,7 +6,7 @@ import net.capozi.limbo_express.LimboExpress;
 import net.capozi.limbo_express.common.game.mapeffect.LimboMapEffect;
 import net.minecraft.util.Identifier;
 
-public class MapEffectInit {
-    public static void init() {}
-    public static final MapEffect LIMBO = WatheMapEffects.registerMapEffect(Identifier.of(LimboExpress.MOD_ID, "limbo_express"), new LimboMapEffect(Identifier.of(LimboExpress.MOD_ID, "limbo_express")));
+public interface MapEffectInit {
+    static void init() {}
+    MapEffect LIMBO = WatheMapEffects.registerMapEffect(Identifier.of(LimboExpress.MOD_ID, "limbo_express"), new LimboMapEffect(Identifier.of(LimboExpress.MOD_ID, "limbo_express")));
 }

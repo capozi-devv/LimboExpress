@@ -41,29 +41,24 @@ public class ModifiedGameFunctions {
                     blockCheck.add(player.getBlockPos());
                 }
             }
-            Iterator<PlayerEntity> playerCheckIterator = playerCheck.iterator();
-            while (playerCheckIterator.hasNext()) {
-                int index = Random.create().nextBetween(0, playerCheck.size());
-                int index2 = Random.create().nextBetween(0, playerCheck.size());
-                PlayerEntity player = playerCheck.get(index);
+            playerPositionMap.forEach((player, pos) -> {
+                int index2 = Random.create().nextBetween(0, blockCheck.size() - 1);
                 BlockPos tpPos = blockCheck.get(index2);
-                if (tpPos == playerPositionMap.get(player)) {
+                if (tpPos.equals(pos)) {
                     if (playerCheck.size() <= 1) {
                         player.playSoundToPlayer(SoundInit.SWAP, SoundCategory.PLAYERS, 1f, 1f);
                         player.sendMessage(Text.translatable("message.limbo_express.player.swap_fail"));
-                        break;
                     }
                     index2++;
-                    tpPos = playerCheck.get(index2).getBlockPos();
+                    tpPos = blockCheck.get(index2);
                 }
                 player.teleport(tpPos.getX(), tpPos.getY(), tpPos.getZ(), false);
                 player.playSound(SoundInit.SWAP, 1f, 1f);
-                playerCheck.remove(index);
-                playerPositionMap.remove(player);
-                blockCheck.remove(index2);
-            }
-            PlayerSwapComponent.KEY.get(killer).setCooldown(ModifiedGameConstants.swapCooldown);
-            killer.getItemCooldownManager().set(ItemInit.SWAP, ModifiedGameConstants.swapCooldown);
+                blockCheck.remove(pos);
+                playerCheck.remove(player);
+            });
+//            PlayerSwapComponent.KEY.get(killer).setCooldown(ModifiedGameConstants.swapCooldown);
+//            killer.getItemCooldownManager().set(ItemInit.SWAP, ModifiedGameConstants.swapCooldown);
             return true;
         }
         return true;
