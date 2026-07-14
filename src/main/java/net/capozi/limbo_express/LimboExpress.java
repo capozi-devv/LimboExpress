@@ -8,12 +8,7 @@ import net.fabricmc.api.ModInitializer;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
-
 public class LimboExpress implements ModInitializer {
-    public static final List<UUID> downpitchVoicePlayers = new ArrayList<>();
     public static final String MOD_ID = "limbo_express";
     public static @NotNull Identifier id(String name) {
         return Identifier.of(MOD_ID, name);

@@ -11,5 +11,7 @@ public interface SoundInit {
     static void init() {
         soundEventRegistrar.setRegistries(soundEventRegistrar.entries, soundEventRegistrar.registry_consumer);
     }
-    SoundEvent SWAP = soundEventRegistrar.add(Identifier.of(LimboExpress.MOD_ID, "swap"), SoundEvent.of(Identifier.of("swap")));
+    SoundEvent SWAP = soundEventRegistrar.add(Identifier.of(LimboExpress.MOD_ID, "swap"), SoundEvent.of(Identifier.of(LimboExpress.MOD_ID, "swap")));
+    SoundEvent INTERIOR_TRACK = soundEventRegistrar.add(Identifier.of(LimboExpress.MOD_ID, "limbo_train_interior"), SoundEvent.of(Identifier.of(LimboExpress.MOD_ID, "limbo_train_interior")));
+    SoundEvent EXTERIOR_TRACK = soundEventRegistrar.add(Identifier.of(LimboExpress.MOD_ID, "limbo_train_exterior"), SoundEvent.of(Identifier.of(LimboExpress.MOD_ID, "limbo_train_exterior")));
 }

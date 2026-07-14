@@ -1,10 +1,12 @@
 package net.capozi.limbo_express.common.game.function;
 
 import dev.doctor4t.wathe.game.GameFunctions;
+import dev.doctor4t.wathe.index.WatheSounds;
 import net.capozi.limbo_express.common.ModifiedGameConstants;
 import net.capozi.limbo_express.common.cca.CivilianInstinctComponent;
 import net.capozi.limbo_express.common.cca.PlayerAnonymityComponent;
 import net.capozi.limbo_express.common.cca.PlayerSwapComponent;
+import net.capozi.limbo_express.common.cca.WorldBackgroundMusicManagerComponent;
 import net.capozi.limbo_express.foundation.ItemInit;
 import net.capozi.limbo_express.foundation.SoundInit;
 import net.minecraft.client.MinecraftClient;
@@ -13,6 +15,8 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.network.packet.s2c.play.PlaySoundS2CPacket;
+import net.minecraft.registry.Registries;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
@@ -71,13 +75,11 @@ public class ModifiedGameFunctions {
                     player.getYaw(),
                     player.getPitch()
             );
-
-            player.playSound(SoundInit.SWAP, 1f, 1f);
+            player.networkHandler.sendPacket(new PlaySoundS2CPacket(Registries.SOUND_EVENT.getEntry(SoundInit.SWAP), SoundCategory.PLAYERS, player.getX(), player.getY(), player.getZ(), 1.0F, 0.9F + player.getRandom().nextFloat() * 0.2F, player.getRandom().nextLong()));
         }
-
-        //    PlayerSwapComponent.KEY.get(killer).setCooldown(ModifiedGameConstants.swapCooldown);
-        //    killer.getItemCooldownManager().set(ItemInit.SWAP, ModifiedGameConstants.swapCooldown);
-
+        PlayerSwapComponent.KEY.get(killer).setCooldown(ModifiedGameConstants.swapCooldown);
+        killer.getItemCooldownManager().set(ItemInit.SWAP, ModifiedGameConstants.swapCooldown);
+        WorldBackgroundMusicManagerComponent.KEY.get(world).shouldMusicPlay = false;
         return true;
     }
     public static boolean activateCivilianSight(PlayerEntity user) {

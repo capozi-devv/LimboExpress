@@ -31,7 +31,8 @@
       "limbo_express:overdose",
       "limbo_express:player_swap",
       "limbo_express:civilian_instinct",
-      "limbo_express:anonymity"
+      "limbo_express:anonymity",
+      "limbo_express:music_manager"
     ]
   },
   "accessWidener" : "limbo_express.accesswidener",

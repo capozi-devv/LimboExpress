@@ -4,5 +4,15 @@
       "limbo_express:item/swap"
     ],
     "subtitle": "Player Swaps"
+  },
+  "limbo_train_interior": {
+    "sounds": [
+      "limbo_express:music/limbo_train_interior"
+    ]
+  },
+  "limbo_train_exterior": {
+    "sounds": [
+      "limbo_express:music/limbo_train_exterior"
+    ]
   }
 }

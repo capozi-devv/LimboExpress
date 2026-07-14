@@ -24,7 +24,7 @@ import static dev.doctor4t.wathe.client.gui.screen.ingame.LimitedInventoryScreen
 import static dev.doctor4t.wathe.client.gui.screen.ingame.LimitedInventoryScreen.ID;
 
 @Mixin(LimitedInventoryScreen.class)
-public class LimitedInventoryScreenMixin extends LimitedHandledScreen<PlayerScreenHandler> {
+public abstract class LimitedInventoryScreenMixin extends LimitedHandledScreen<PlayerScreenHandler> {
     private LimitedInventoryScreenMixin(PlayerScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
     }
@@ -52,20 +52,5 @@ public class LimitedInventoryScreenMixin extends LimitedHandledScreen<PlayerScre
             }
             ci.cancel();
         }
-    }
-    @Overwrite
-    protected void drawBackground(DrawContext context, float v, int i, int i1) {
-        context.drawTexture(BACKGROUND_TEXTURE, this.x, this.y, 0, 0, this.backgroundWidth, this.backgroundHeight);
-        context.getMatrices().push();
-        context.getMatrices().translate(context.getScaledWindowWidth() / 2f, context.getScaledWindowHeight(), 0);
-        float scale = 0.28f;
-        context.getMatrices().scale(scale, scale, 1f);
-        int height = 254;
-        int width = 497;
-        context.getMatrices().translate(0, -230, 0);
-        int xOffset = 0;
-        int yOffset = 0;
-        context.drawTexturedQuad(ID, (int) (xOffset - width / 2f), (int) (xOffset + width / 2f), (int) (yOffset - height / 2f), (int) (yOffset + height / 2f), 0, 0, 1f, 0, 1f, 1f, 1f, 1f, 1f);
-        context.getMatrices().pop();
     }
 }

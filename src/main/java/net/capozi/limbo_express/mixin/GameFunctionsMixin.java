@@ -1,6 +1,5 @@
 package net.capozi.limbo_express.mixin;
 
-import dev.doctor4t.wathe.api.Role;
 import dev.doctor4t.wathe.cca.*;
 import dev.doctor4t.wathe.game.GameFunctions;
 import dev.doctor4t.wathe.index.WatheDataComponentTypes;
@@ -16,7 +15,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -51,5 +49,32 @@ public class GameFunctionsMixin {
 
         gameComponent.setGameStatus(GameWorldComponent.GameStatus.ACTIVE);
         gameComponent.sync();
+    }
+    @Inject(method = "finalizeGame", at = @At("TAIL"))
+    private static void limboExpress$finalizeGame(ServerWorld world, CallbackInfo ci) {
+        List<ServerPlayerEntity> players = world.getPlayers();
+        for (PlayerEntity player : players) {
+            if (GameFunctions.isPlayerAliveAndSurvival(player)) {
+                player.getInventory().clear();
+                OverdoseComponent.KEY.get(player).reset();
+                CivilianInstinctComponent.KEY.get(player).reset();
+                PlayerSwapComponent.KEY.get(player).reset();
+                PlayerAnonymityComponent.KEY.get(player).reset();
+                HashSet<Item> copy = new HashSet<>(player.getItemCooldownManager().entries.keySet());
+                for (Item item : copy) player.getItemCooldownManager().remove(item);
+            }
+        }
+    }
+    @Inject(method = "killPlayer(Lnet/minecraft/entity/player/PlayerEntity;ZLnet/minecraft/entity/player/PlayerEntity;Lnet/minecraft/util/Identifier;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;set(Lnet/minecraft/component/ComponentType;Ljava/lang/Object;)Ljava/lang/Object;", shift = At.Shift.AFTER))
+    private static void limboExpress$killPlayer(PlayerEntity victim, boolean spawnBody, PlayerEntity killer, Identifier deathReason, CallbackInfo ci) {
+        if (!GameWorldComponent.KEY.get(killer.getWorld()).canUseKillerFeatures(killer)) {
+            for(List<ItemStack> list : killer.getInventory().combinedInventory) {
+                for(ItemStack stack : list) {
+                    if (stack.isOf(WatheItems.DERRINGER) && stack == killer.getMainHandStack()) {
+                        stack.set(WatheDataComponentTypes.USED, true);
+                    }
+                }
+            }
+        }
     }
 }

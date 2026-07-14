@@ -45,23 +45,4 @@ public class CoinItem extends Item {
         }
         return super.onStackClicked(stack, slot, clickType, player);
     }
-
-    @Override
-    public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
-        if (entity instanceof PlayerEntity) {
-            PlayerShopComponent shop = PlayerShopComponent.KEY.get(entity);
-            stack.decrement(1);
-            int tempAmount;
-            Random rand = new Random();
-            int chance = Math.abs(rand.nextInt()) % 100;
-            if (chance < 1) { tempAmount = amounts[4]; } else if (chance < 10) { tempAmount = amounts[3]; }
-            else if (chance < 25) { tempAmount = amounts[2]; } else if (chance < 50) { tempAmount = amounts[1]; }
-            else { tempAmount = amounts[0]; }
-            shop.balance += tempAmount;
-            if (entity instanceof ServerPlayerEntity serverPlayer) {
-                serverPlayer.networkHandler.sendPacket(new PlaySoundS2CPacket(Registries.SOUND_EVENT.getEntry(WatheSounds.UI_SHOP_BUY_FAIL), SoundCategory.PLAYERS, entity.getX(), entity.getY(), entity.getZ(), 1.0F, 0.9F + entity.getRandom().nextFloat() * 0.2F, entity.getRandom().nextLong()));
-            }
-            tempAmount = 0;
-        }
-    }
 }

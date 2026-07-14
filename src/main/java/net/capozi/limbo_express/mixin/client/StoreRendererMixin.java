@@ -22,7 +22,7 @@ public class StoreRendererMixin {
     public static float offsetDelta;
     @Inject(method = "renderHud", at = @At("HEAD"), cancellable = true)
     private static void limboExpress$renderHud(TextRenderer renderer, ClientPlayerEntity player, DrawContext context, float delta, CallbackInfo ci) {
-        if (GameWorldComponent.KEY.get(player.getWorld()).getMapEffect().equals(MapEffectInit.LIMBO)) {
+        if (GameWorldComponent.KEY.get(player.getWorld()).getMapEffect().equals(MapEffectInit.LIMBO) || GameWorldComponent.KEY.get(player.getWorld()).getMapEffect().equals(MapEffectInit.LIMBO_LITE)) {
             if (GameWorldComponent.KEY.get(player.getWorld()).isInnocent(player)) {
                 int balance = PlayerShopComponent.KEY.get(player).balance;
                 if (view.getTarget() != balance) {

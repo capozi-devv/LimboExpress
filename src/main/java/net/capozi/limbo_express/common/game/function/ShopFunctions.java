@@ -2,12 +2,14 @@ package net.capozi.limbo_express.common.game.function;
 
 import dev.doctor4t.wathe.cca.GameWorldComponent;
 import dev.doctor4t.wathe.cca.PlayerShopComponent;
+import dev.doctor4t.wathe.index.WatheItems;
 import dev.doctor4t.wathe.index.WatheSounds;
 import dev.doctor4t.wathe.util.ShopEntry;
 import net.capozi.limbo_express.common.ModifiedGameConstants;
 import net.capozi.limbo_express.mixin.access.PlayerShopComponentAccessor;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.network.packet.s2c.play.PlaySoundS2CPacket;
 import net.minecraft.registry.Registries;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -21,6 +23,11 @@ import static dev.doctor4t.wathe.util.ShopEntry.insertStackInFreeSlot;
 public class ShopFunctions {
     public static boolean onBuy(@NotNull PlayerEntity player, ShopEntry shop) {
         if (GameWorldComponent.KEY.get(player.getWorld()).isInnocent(player)) {
+            if (shop.stack().isOf(WatheItems.DERRINGER)) {
+                for (ItemStack stack : player.getInventory().main) {
+                    if (stack.isOf(WatheItems.DERRINGER)) return false;
+                }
+            }
             return insertStackInFreeSlot(player, shop.stack().copy());
         } else return false;
     }

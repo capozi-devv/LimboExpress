@@ -22,8 +22,8 @@ public abstract class PlayerMoodComponentMixin {
     @Shadow @Final private PlayerEntity player;
     @Inject(method = "setMood", at = @At("HEAD"))
     void giveCoinsForMood(float mood, CallbackInfo ci) {
-        GameWorldComponent gameWorldComponent = (GameWorldComponent)GameWorldComponent.KEY.get(player.getWorld());
-        if (gameWorldComponent.getMapEffect().equals(MapEffectInit.LIMBO)) {
+        GameWorldComponent gameWorldComponent = GameWorldComponent.KEY.get(player.getWorld());
+        if (gameWorldComponent.getMapEffect().equals(MapEffectInit.LIMBO) || gameWorldComponent.getMapEffect().equals(MapEffectInit.LIMBO_LITE)) {
             if (mood > getMood()) {
                 if (gameWorldComponent.getRole(player) != null) {
                     if (gameWorldComponent.getRole(player).getMoodType().equals(Role.MoodType.REAL)) {

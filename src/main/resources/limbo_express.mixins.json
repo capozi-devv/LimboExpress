@@ -5,11 +5,11 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "GameFunctionsMixin",
-    "GunShootPayloadReceiverMixin",
     "PlayerMoodComponentMixin",
     "RevolverItemMixin",
     "StoreBuyPayloadReceiverMixin",
     "WatheClientMixin",
+    "access.BackgroundAmbienceAccessor",
     "access.PlayerShopComponentAccessor",
     "client.MoodRendererMixin",
     "client.RoleNameRendererMixin",
