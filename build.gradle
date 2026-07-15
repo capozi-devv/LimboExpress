@@ -60,7 +60,6 @@ dependencies {
     mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
     modImplementation "maven.modrinth:wathe:1.3.2-1.21.1"
-    implementation "melody:melody-1.0.0:1.0"
     modImplementation "maven.modrinth:dotzip:${project.dotzip_version}"
     include "maven.modrinth:dotzip:${project.dotzip_version}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"

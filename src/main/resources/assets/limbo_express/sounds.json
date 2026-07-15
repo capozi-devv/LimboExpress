@@ -7,7 +7,9 @@
   },
   "limbo_train_interior": {
     "sounds": [
-      "limbo_express:music/limbo_train_interior"
+      "limbo_express:music/limbo_train_interior_0",
+      "limbo_express:music/limbo_train_interior_1",
+      "limbo_express:music/limbo_train_interior_2"
     ]
   },
   "limbo_train_exterior": {

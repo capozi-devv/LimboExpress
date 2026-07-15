@@ -39,7 +39,7 @@ public interface ModifiedGameConstants {
     }
     List<ShopEntry> MODIFIED_KILLER_SHOP_ENTRIES = Util.make(new ArrayList<>(), entries -> {
         entries.add(new ShopEntry(WatheItems.KNIFE.getDefaultStack(), 100, ShopEntry.Type.WEAPON));
-        entries.add(new ShopEntry(ItemInit.SWAP.getDefaultStack(), 350, ShopEntry.Type.WEAPON) {
+        entries.add(new ShopEntry(ItemInit.SWAP.getDefaultStack(), 300, ShopEntry.Type.WEAPON) {
             @Override
             public boolean onBuy(@NotNull PlayerEntity player) {
                 if (PlayerSwapComponent.KEY.get(player).getCooldown() != 0) return false;
@@ -47,17 +47,17 @@ public interface ModifiedGameConstants {
             }
         });
         entries.add(new ShopEntry(WatheItems.GRENADE.getDefaultStack(), 200, ShopEntry.Type.WEAPON));
-        entries.add(new ShopEntry(WatheItems.SCORPION.getDefaultStack(), 75, ShopEntry.Type.POISON));
+        entries.add(new ShopEntry(WatheItems.SCORPION.getDefaultStack(), 50, ShopEntry.Type.POISON));
         entries.add(new ShopEntry(WatheItems.POISON_VIAL.getDefaultStack(), 75, ShopEntry.Type.POISON));
         entries.add(new ShopEntry(new ItemStack(WatheItems.NOTE, 4), 25, ShopEntry.Type.TOOL));
-        entries.add(new ShopEntry(potionStack(stack), 250, ShopEntry.Type.TOOL) {
+        entries.add(new ShopEntry(potionStack(stack), 200, ShopEntry.Type.TOOL) {
             @Override
             public boolean onBuy(@NotNull PlayerEntity player) {
                 return ModifiedGameFunctions.anonymize(player);
             }
         });
         entries.add(new ShopEntry(WatheItems.LOCKPICK.getDefaultStack(), 50, ShopEntry.Type.TOOL));
-        entries.add(new ShopEntry(WatheItems.BLACKOUT.getDefaultStack(), 300, ShopEntry.Type.TOOL) {
+        entries.add(new ShopEntry(WatheItems.BLACKOUT.getDefaultStack(), 250, ShopEntry.Type.TOOL) {
             @Override
             public boolean onBuy(@NotNull PlayerEntity player) {
                 return PlayerShopComponent.useBlackout(player);
@@ -71,7 +71,7 @@ public interface ModifiedGameConstants {
                 return ShopFunctions.onBuy(player, this);
             }
         });
-        entries.add(new ShopEntry(new ItemStack(ItemInit.SANITY_PILLS, 1), 300, ShopEntry.Type.POISON) {
+        entries.add(new ShopEntry(new ItemStack(ItemInit.SANITY_PILLS, 1), 150, ShopEntry.Type.POISON) {
             @Override
             public boolean onBuy(@NotNull PlayerEntity player) {
                 return ShopFunctions.onBuy(player, this);
@@ -89,10 +89,16 @@ public interface ModifiedGameConstants {
                 return ModifiedGameFunctions.activateCivilianSight(player);
             }
         });
-        entries.add(new ShopEntry(potionStack(stack), 250, ShopEntry.Type.TOOL) {
+        entries.add(new ShopEntry(potionStack(stack), 200, ShopEntry.Type.TOOL) {
             @Override
             public boolean onBuy(@NotNull PlayerEntity player) {
                 return ModifiedGameFunctions.anonymize(player);
+            }
+        });
+        entries.add(new ShopEntry(WatheItems.CROWBAR.getDefaultStack(), 175, ShopEntry.Type.TOOL) {
+            @Override
+            public boolean onBuy(@NotNull PlayerEntity player) {
+                return ShopFunctions.onBuy(player, this);
             }
         });
     });

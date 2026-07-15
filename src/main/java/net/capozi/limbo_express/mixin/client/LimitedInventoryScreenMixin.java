@@ -32,7 +32,7 @@ public abstract class LimitedInventoryScreenMixin extends LimitedHandledScreen<P
     protected void init(CallbackInfo ci) {
         super.init();
         PlayerEntity objectPlayer = ((LimitedInventoryScreen)(Object)this).player;
-        if (GameWorldComponent.KEY.get(objectPlayer.getWorld()).getMapEffect().equals(MapEffectInit.LIMBO)) {
+        if (GameWorldComponent.KEY.get(objectPlayer.getWorld()).getMapEffect().equals(MapEffectInit.LIMBO) || GameWorldComponent.KEY.get(objectPlayer.getWorld()).getMapEffect().equals(MapEffectInit.LIMBO_LITE)) {
             if (GameWorldComponent.KEY.get(objectPlayer.getWorld()).isInnocent(objectPlayer) || GameWorldComponent.KEY.get(objectPlayer.getWorld()).isInnocent(objectPlayer)) {
                 List<ShopEntry> entries = ModifiedGameConstants.CIVILIAN_SHOP_ENTRIES;
                 int apart = 38;
