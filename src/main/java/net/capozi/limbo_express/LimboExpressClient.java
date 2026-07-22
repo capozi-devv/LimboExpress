@@ -6,6 +6,7 @@ import dev.doctor4t.ratatouille.util.TextUtils;
 import dev.doctor4t.wathe.Wathe;
 import dev.doctor4t.wathe.client.WatheClient;
 import dev.doctor4t.wathe.index.WatheItems;
+import eu.midnightdust.lib.config.MidnightConfig;
 import net.capozi.limbo_express.client.hud.ComponentTimeRenderer;
 import net.capozi.limbo_express.common.cca.WorldBackgroundMusicManagerComponent;
 import net.capozi.limbo_express.common.game.function.ModifiedGameFunctions;
@@ -46,15 +47,16 @@ public class LimboExpressClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(BlockInit.SILVER_ORNAMENT, RenderLayer.getCutout());
         AmbienceUtil.registerBackgroundAmbience(BackgroundAmbienceAccessor.backgroundAmbience(SoundInit.INTERIOR_TRACK, SoundCategory.RECORDS, player -> {
             if (WatheClient.isTrainMoving() && !Wathe.isSkyVisibleAdjacent(player)) {
-                if (musicManager.shouldMusicPlay) return true;
+                if (musicManager.shouldMusicPlay && LimboExpressConfig.enableBackgroundMusic) return true;
             }
             return false;
         }, 20, 5));
         AmbienceUtil.registerBackgroundAmbience(BackgroundAmbienceAccessor.backgroundAmbience(SoundInit.EXTERIOR_TRACK, SoundCategory.RECORDS, player -> {
             if (WatheClient.isTrainMoving() && Wathe.isSkyVisibleAdjacent(player)) {
-                if (musicManager.shouldMusicPlay) return true;
+                if (musicManager.shouldMusicPlay && LimboExpressConfig.enableBackgroundMusic) return true;
             }
             return false;
         }, 20, 5));
+        LimboExpressConfig.init(LimboExpress.MOD_ID, LimboExpressConfig.class);
     }
 }

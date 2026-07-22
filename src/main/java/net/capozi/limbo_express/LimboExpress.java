@@ -1,5 +1,6 @@
 package net.capozi.limbo_express;
 
+import eu.midnightdust.lib.config.MidnightConfig;
 import net.capozi.limbo_express.foundation.BlockInit;
 import net.capozi.limbo_express.foundation.ItemInit;
 import net.capozi.limbo_express.foundation.MapEffectInit;
@@ -19,5 +20,6 @@ public class LimboExpress implements ModInitializer {
         BlockInit.init();
         SoundInit.init();
         MapEffectInit.init();
+
     }
 }

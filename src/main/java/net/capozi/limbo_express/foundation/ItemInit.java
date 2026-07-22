@@ -1,14 +1,15 @@
 package net.capozi.limbo_express.foundation;
 
-import devv.capozi.zip.common.index.Registrar;
+import devv.capozi.zip.common.api.index.Registrar;
 import net.capozi.limbo_express.LimboExpress;
 import net.capozi.limbo_express.common.item.*;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
 public interface ItemInit {
-    Registrar<Item> itemRegistrar = new Registrar<Item>(LimboExpress.MOD_ID, Registries.ITEM);
+    Registrar<Item> itemRegistrar = new Registrar<Item>((identifier, block) -> Registry.register(Registries.ITEM, identifier, block));
     static void init() {
         itemRegistrar.setRegistries(itemRegistrar.entries, itemRegistrar.registry_consumer);
     }

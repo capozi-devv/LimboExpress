@@ -40,7 +40,6 @@ public class CoinItem extends Item {
             if (player instanceof ServerPlayerEntity serverPlayer) {
                 serverPlayer.networkHandler.sendPacket(new PlaySoundS2CPacket(Registries.SOUND_EVENT.getEntry(WatheSounds.UI_SHOP_BUY_FAIL), SoundCategory.PLAYERS, player.getX(), player.getY(), player.getZ(), 1.0F, 0.9F + player.getRandom().nextFloat() * 0.2F, player.getRandom().nextLong()));
             }
-            tempAmount = 0;
             return true;
         }
         return super.onStackClicked(stack, slot, clickType, player);

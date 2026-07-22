@@ -65,7 +65,7 @@ public interface ModifiedGameConstants {
         });
     });
     List<ShopEntry> CIVILIAN_SHOP_ENTRIES = Util.make(new ArrayList<>(), entries -> {
-        entries.add(new ShopEntry(new ItemStack(WatheItems.DERRINGER, 1), 500, ShopEntry.Type.WEAPON) {
+        entries.add(new ShopEntry(new ItemStack(WatheItems.DERRINGER, 1), 350, ShopEntry.Type.WEAPON) {
             @Override
             public boolean onBuy(@NotNull PlayerEntity player) {
                 return ShopFunctions.onBuy(player, this);
