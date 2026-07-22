@@ -39,15 +39,11 @@ public class OverdoseComponent implements AutoSyncedComponent, ServerTickingComp
     }
     @Override
     public void serverTick() {
-        if (timesPillsUsed >= 15){
+        if (timesPillsUsed >= 6){
             moodDrainIncrease = ModifiedGameConstants.OVERDOSE_MOOD_DRAIN;
-            return;
-        }
-        if (timesPillsUsed >= 10) {
+        } else if (timesPillsUsed >= 4) {
             moodDrainIncrease = ModifiedGameConstants.OVERDOSE_MOOD_DRAIN * 0.66f;
-            return;
-        }
-        if (timesPillsUsed >= 5) {
+        } else if (timesPillsUsed >= 2) {
             moodDrainIncrease = ModifiedGameConstants.OVERDOSE_MOOD_DRAIN * 0.33f;
         }
         sync();

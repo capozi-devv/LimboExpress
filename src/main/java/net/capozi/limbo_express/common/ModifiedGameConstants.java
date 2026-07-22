@@ -1,6 +1,7 @@
 package net.capozi.limbo_express.common;
 
 import dev.doctor4t.wathe.cca.PlayerShopComponent;
+import dev.doctor4t.wathe.game.GameConstants;
 import dev.doctor4t.wathe.index.WatheItems;
 import dev.doctor4t.wathe.util.ShopEntry;
 import net.capozi.limbo_express.LimboExpressConfig;
@@ -104,7 +105,7 @@ public interface ModifiedGameConstants {
         });
     });
     float MOOD_GAIN = 0.25f;
-    float OVERDOSE_MOOD_DRAIN = 0.35f;
+    float OVERDOSE_MOOD_DRAIN = 2.5f / GameConstants.getInTicks(4, 0);
     int swapCooldown = 6000;
     int civilianSightCooldown = 3600;
 }
