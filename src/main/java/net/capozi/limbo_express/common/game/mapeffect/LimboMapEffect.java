@@ -25,7 +25,7 @@ public class LimboMapEffect extends HarpyExpressTrainMapEffect {
     public void initializeMapEffects(ServerWorld serverWorld, List<ServerPlayerEntity> players) {
         TrainWorldComponent trainWorldComponent = TrainWorldComponent.KEY.get(serverWorld);
         trainWorldComponent.setTimeOfDay(TrainWorldComponent.TimeOfDay.NIGHT);
-        trainWorldComponent.setSnow(false);
+        trainWorldComponent.setSnow(true);
         trainWorldComponent.setFog(false);
         trainWorldComponent.setHud(true);
         trainWorldComponent.setSpeed(130);

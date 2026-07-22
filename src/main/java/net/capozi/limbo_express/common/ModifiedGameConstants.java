@@ -3,6 +3,7 @@ package net.capozi.limbo_express.common;
 import dev.doctor4t.wathe.cca.PlayerShopComponent;
 import dev.doctor4t.wathe.index.WatheItems;
 import dev.doctor4t.wathe.util.ShopEntry;
+import net.capozi.limbo_express.LimboExpressConfig;
 import net.capozi.limbo_express.common.cca.PlayerSwapComponent;
 import net.capozi.limbo_express.common.game.function.ModifiedGameFunctions;
 import net.capozi.limbo_express.common.game.function.ShopFunctions;
@@ -38,26 +39,26 @@ public interface ModifiedGameConstants {
         return copy;
     }
     List<ShopEntry> MODIFIED_KILLER_SHOP_ENTRIES = Util.make(new ArrayList<>(), entries -> {
-        entries.add(new ShopEntry(WatheItems.KNIFE.getDefaultStack(), 100, ShopEntry.Type.WEAPON));
-        entries.add(new ShopEntry(ItemInit.SWAP.getDefaultStack(), 300, ShopEntry.Type.WEAPON) {
+        entries.add(new ShopEntry(WatheItems.KNIFE.getDefaultStack(), LimboExpressConfig.knifePrice, ShopEntry.Type.WEAPON));
+        entries.add(new ShopEntry(ItemInit.SWAP.getDefaultStack(), LimboExpressConfig.swapPrice, ShopEntry.Type.WEAPON) {
             @Override
             public boolean onBuy(@NotNull PlayerEntity player) {
                 if (PlayerSwapComponent.KEY.get(player).getCooldown() != 0) return false;
                 return ModifiedGameFunctions.triggerSwap(player.getWorld(), player);
             }
         });
-        entries.add(new ShopEntry(WatheItems.GRENADE.getDefaultStack(), 200, ShopEntry.Type.WEAPON));
-        entries.add(new ShopEntry(WatheItems.SCORPION.getDefaultStack(), 50, ShopEntry.Type.POISON));
-        entries.add(new ShopEntry(WatheItems.POISON_VIAL.getDefaultStack(), 75, ShopEntry.Type.POISON));
-        entries.add(new ShopEntry(new ItemStack(WatheItems.NOTE, 4), 25, ShopEntry.Type.TOOL));
-        entries.add(new ShopEntry(potionStack(stack), 200, ShopEntry.Type.TOOL) {
+        entries.add(new ShopEntry(WatheItems.GRENADE.getDefaultStack(), LimboExpressConfig.grenadePrice, ShopEntry.Type.WEAPON));
+        entries.add(new ShopEntry(WatheItems.SCORPION.getDefaultStack(), LimboExpressConfig.scorpionPrice, ShopEntry.Type.POISON));
+        entries.add(new ShopEntry(WatheItems.POISON_VIAL.getDefaultStack(), LimboExpressConfig.poisonPrice, ShopEntry.Type.POISON));
+        entries.add(new ShopEntry(new ItemStack(WatheItems.NOTE, 4), LimboExpressConfig.notePrice, ShopEntry.Type.TOOL));
+        entries.add(new ShopEntry(potionStack(stack), LimboExpressConfig.anonymityPrice, ShopEntry.Type.TOOL) {
             @Override
             public boolean onBuy(@NotNull PlayerEntity player) {
                 return ModifiedGameFunctions.anonymize(player);
             }
         });
-        entries.add(new ShopEntry(WatheItems.LOCKPICK.getDefaultStack(), 50, ShopEntry.Type.TOOL));
-        entries.add(new ShopEntry(WatheItems.BLACKOUT.getDefaultStack(), 250, ShopEntry.Type.TOOL) {
+        entries.add(new ShopEntry(WatheItems.LOCKPICK.getDefaultStack(), LimboExpressConfig.lockpickPrice, ShopEntry.Type.TOOL));
+        entries.add(new ShopEntry(WatheItems.BLACKOUT.getDefaultStack(), LimboExpressConfig.blackoutPrice, ShopEntry.Type.TOOL) {
             @Override
             public boolean onBuy(@NotNull PlayerEntity player) {
                 return PlayerShopComponent.useBlackout(player);
@@ -65,37 +66,37 @@ public interface ModifiedGameConstants {
         });
     });
     List<ShopEntry> CIVILIAN_SHOP_ENTRIES = Util.make(new ArrayList<>(), entries -> {
-        entries.add(new ShopEntry(new ItemStack(WatheItems.DERRINGER, 1), 350, ShopEntry.Type.WEAPON) {
+        entries.add(new ShopEntry(new ItemStack(WatheItems.DERRINGER, 1), LimboExpressConfig.derringerPrice, ShopEntry.Type.WEAPON) {
             @Override
             public boolean onBuy(@NotNull PlayerEntity player) {
                 return ShopFunctions.onBuy(player, this);
             }
         });
-        entries.add(new ShopEntry(new ItemStack(ItemInit.SANITY_PILLS, 1), 150, ShopEntry.Type.POISON) {
+        entries.add(new ShopEntry(new ItemStack(ItemInit.SANITY_PILLS, 1), LimboExpressConfig.pillsPrice, ShopEntry.Type.POISON) {
             @Override
             public boolean onBuy(@NotNull PlayerEntity player) {
                 return ShopFunctions.onBuy(player, this);
             }
         });
-        entries.add(new ShopEntry(new ItemStack(WatheItems.NOTE, 4), 25, ShopEntry.Type.TOOL) {
+        entries.add(new ShopEntry(new ItemStack(WatheItems.NOTE, 4), LimboExpressConfig.notePrice, ShopEntry.Type.TOOL) {
             @Override
             public boolean onBuy(@NotNull PlayerEntity player) {
                 return ShopFunctions.onBuy(player, this);
             }
         });
-        entries.add(new ShopEntry(new ItemStack(ItemInit.CIVILIAN_SIGHT), 250, ShopEntry.Type.TOOL) {
+        entries.add(new ShopEntry(new ItemStack(ItemInit.CIVILIAN_SIGHT), LimboExpressConfig.clairvoyancePrice, ShopEntry.Type.TOOL) {
             @Override
             public boolean onBuy(@NotNull PlayerEntity player) {
                 return ModifiedGameFunctions.activateCivilianSight(player);
             }
         });
-        entries.add(new ShopEntry(potionStack(stack), 200, ShopEntry.Type.TOOL) {
+        entries.add(new ShopEntry(potionStack(stack), LimboExpressConfig.anonymityPrice, ShopEntry.Type.TOOL) {
             @Override
             public boolean onBuy(@NotNull PlayerEntity player) {
                 return ModifiedGameFunctions.anonymize(player);
             }
         });
-        entries.add(new ShopEntry(WatheItems.CROWBAR.getDefaultStack(), 175, ShopEntry.Type.TOOL) {
+        entries.add(new ShopEntry(WatheItems.CROWBAR.getDefaultStack(), LimboExpressConfig.crowbarPrice, ShopEntry.Type.TOOL) {
             @Override
             public boolean onBuy(@NotNull PlayerEntity player) {
                 return ShopFunctions.onBuy(player, this);

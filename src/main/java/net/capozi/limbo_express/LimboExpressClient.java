@@ -57,6 +57,6 @@ public class LimboExpressClient implements ClientModInitializer {
             }
             return false;
         }, 20, 5));
-        LimboExpressConfig.init(LimboExpress.MOD_ID, LimboExpressConfig.class);
+
     }
 }
