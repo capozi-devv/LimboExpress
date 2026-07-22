@@ -5,13 +5,18 @@ import dev.doctor4t.wathe.client.gui.screen.ingame.LimitedHandledScreen;
 import dev.doctor4t.wathe.client.gui.screen.ingame.LimitedInventoryScreen;
 import dev.doctor4t.wathe.game.GameConstants;
 import dev.doctor4t.wathe.util.ShopEntry;
+import net.capozi.limbo_express.LimboExpressConfig;
 import net.capozi.limbo_express.common.ModifiedGameConstants;
+import net.capozi.limbo_express.common.game.function.ShopFunctions;
+import net.capozi.limbo_express.foundation.ItemInit;
 import net.capozi.limbo_express.foundation.MapEffectInit;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.item.ItemStack;
 import net.minecraft.screen.PlayerScreenHandler;
 import net.minecraft.text.Text;
+import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.injection.At;
@@ -38,16 +43,29 @@ public abstract class LimitedInventoryScreenMixin extends LimitedHandledScreen<P
                 int apart = 38;
                 int x = this.width / 2 - entries.size() * apart / 2 + 9;
                 int y = this.y - 46;
-                for (int i = 0; i < entries.size(); i++) {
+                int j = 1;
+                for (int i = 0; i < entries.size(); i++, j++) {
                     this.addDrawableChild(new LimitedInventoryScreen.StoreItemWidget(((LimitedInventoryScreen)(Object)this), x + apart * i, y, entries.get(i), i));
+                }
+                if (LimboExpressConfig.enableCoinTransfer) {
+                    this.addDrawableChild(new LimitedInventoryScreen.StoreItemWidget(((LimitedInventoryScreen)(Object)this), this.width - (this.width - 20), this.height - (this.height - 20), new ShopEntry(new ItemStack(ItemInit.COIN), 50, ShopEntry.Type.TOOL) {
+                        @Override
+                        public boolean onBuy(@NotNull PlayerEntity player) {
+                            return ShopFunctions.onBuy(player, this);
+                        }
+                    }, j));
                 }
             } else if (GameWorldComponent.KEY.get(objectPlayer.getWorld()).canUseKillerFeatures(objectPlayer)) {
                 List<ShopEntry> entries = ModifiedGameConstants.MODIFIED_KILLER_SHOP_ENTRIES;
                 int apart = 38;
                 int x = this.width / 2 - entries.size() * apart / 2 + 9;
                 int y = this.y - 46;
-                for (int i = 0; i < entries.size(); i++) {
+                int j = 1;
+                for (int i = 0; i < entries.size(); i++, j++) {
                     this.addDrawableChild(new LimitedInventoryScreen.StoreItemWidget(((LimitedInventoryScreen)(Object)this), x + apart * i, y, entries.get(i), i));
+                }
+                if (LimboExpressConfig.enableCoinTransfer) {
+                    this.addDrawableChild(new LimitedInventoryScreen.StoreItemWidget(((LimitedInventoryScreen)(Object)this), this.width - (this.width - 20), this.height - (this.height - 20), new ShopEntry(new ItemStack(ItemInit.COIN), 50, ShopEntry.Type.TOOL), j));
                 }
             }
             ci.cancel();

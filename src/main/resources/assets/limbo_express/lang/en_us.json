@@ -27,5 +27,21 @@
   "tip.letter.tooltip2.limbo": "The §kLimbo§r Conso§kli§rdati§ko§rn we§kcomes you to your",
   "tip.letter.illegible": "§o§7The rest of the letter is illegible...",
   "tooltip.limbo_express.derringer": "§7Point, right-click and shoot\n§7Can only be shot once, so make it count.\n§7Can only be bought once",
-  "tooltip.limbo_express.derringer.used": "Used, cannot be shot anymore"
+  "tooltip.limbo_express.derringer.used": "Used, cannot be shot anymore",
+  "limbo_express.midnightconfig.enableBackgroundMusic": "Enable Background Music",
+  "limbo_express.midnightconfig.enableCoinTransfer": "Enable Coin Transfer",
+  "limbo_express.midnightconfig.knifePrice": "Knife Price",
+  "limbo_express.midnightconfig.swapPrice": "Swap Price",
+  "limbo_express.midnightconfig.grenadePrice": "Grenade Price",
+  "limbo_express.midnightconfig.scorpionPrice": "Scorpion Price",
+  "limbo_express.midnightconfig.poisonPrice": "Poison Price",
+  "limbo_express.midnightconfig.notePrice": "Note Price",
+  "limbo_express.midnightconfig.anonymityPrice": "Anonymity Price",
+  "limbo_express.midnightconfig.lockpickPrice": "Lockpick Price",
+  "limbo_express.midnightconfig.blackoutPrice": "Blackout Price",
+  "limbo_express.midnightconfig.derringerPrice": "Derringer Price",
+  "limbo_express.midnightconfig.pillsPrice": "Pills Price",
+  "limbo_express.midnightconfig.clairvoyancePrice": "Clairvoyance Price",
+  "limbo_express.midnightconfig.crowbarPrice": "Crowbar Price",
+  "limbo_express.midnightconfig.title": "LIMBO EXPRESS /// CONFIGURATION"
 }
