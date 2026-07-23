@@ -2,6 +2,8 @@ package net.capozi.limbo_express.common.cca;
 
 import dev.doctor4t.wathe.Wathe;
 import dev.doctor4t.wathe.cca.PlayerMoodComponent;
+import dev.doctor4t.wathe.cca.PlayerPoisonComponent;
+import dev.doctor4t.wathe.game.GameFunctions;
 import net.capozi.limbo_express.LimboExpress;
 import net.capozi.limbo_express.common.ModifiedGameConstants;
 import net.minecraft.entity.player.PlayerEntity;
@@ -14,6 +16,8 @@ import org.ladysnake.cca.api.v3.component.ComponentRegistry;
 import org.ladysnake.cca.api.v3.component.sync.AutoSyncedComponent;
 import org.ladysnake.cca.api.v3.component.tick.ClientTickingComponent;
 import org.ladysnake.cca.api.v3.component.tick.ServerTickingComponent;
+
+import java.util.UUID;
 
 public class OverdoseComponent implements AutoSyncedComponent, ServerTickingComponent, ClientTickingComponent {
     public static final ComponentKey<OverdoseComponent> KEY = ComponentRegistry.getOrCreate(Identifier.of(LimboExpress.MOD_ID, "overdose"), OverdoseComponent.class);
@@ -45,6 +49,15 @@ public class OverdoseComponent implements AutoSyncedComponent, ServerTickingComp
             moodDrainIncrease = ModifiedGameConstants.OVERDOSE_MOOD_DRAIN * 0.66f;
         } else if (timesPillsUsed >= 2) {
             moodDrainIncrease = ModifiedGameConstants.OVERDOSE_MOOD_DRAIN * 0.33f;
+        }
+
+        if (timesPillsUsed >= 10) {
+            PlayerPoisonComponent component = PlayerPoisonComponent.KEY.get(player);
+            if (component.poisonTicks == -1) {
+                if (GameFunctions.isPlayerAliveAndSurvival(player)) {
+                    component.setPoisonTicks(player.getWorld().getRandom().nextBetween(PlayerPoisonComponent.clampTime.getLeft(), PlayerPoisonComponent.clampTime.getRight()), null);
+                }
+            }
         }
         sync();
     }

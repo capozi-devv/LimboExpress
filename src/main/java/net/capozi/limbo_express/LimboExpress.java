@@ -1,7 +1,6 @@
 package net.capozi.limbo_express;
 
-import eu.midnightdust.lib.config.MidnightConfig;
-import net.capozi.limbo_express.common.packet.clientbound.ConfigMatchC2SPacket;
+import net.capozi.limbo_express.common.packet.clientbound.ConfigMatchS2CPacket;
 import net.capozi.limbo_express.foundation.BlockInit;
 import net.capozi.limbo_express.foundation.ItemInit;
 import net.capozi.limbo_express.foundation.MapEffectInit;
@@ -25,7 +24,7 @@ public class LimboExpress implements ModInitializer {
         SoundInit.init();
         MapEffectInit.init();
         LimboExpressConfig.init(LimboExpress.MOD_ID, LimboExpressConfig.class);
-        PayloadTypeRegistry.playS2C().register(ConfigMatchC2SPacket.ID, ConfigMatchC2SPacket.CODEC);
-        ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> ServerPlayNetworking.send(handler.player, new ConfigMatchC2SPacket(LimboExpressConfig.encode())));
+        PayloadTypeRegistry.playS2C().register(ConfigMatchS2CPacket.ID, ConfigMatchS2CPacket.CODEC);
+        ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> ServerPlayNetworking.send(handler.player, new ConfigMatchS2CPacket(LimboExpressConfig.encode())));
     }
 }

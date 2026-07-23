@@ -26,9 +26,11 @@ public class WatheClientMixin {
     @ModifyArgs(method = "onInitializeClient", at = @At(value = "INVOKE", target = "Ldev/doctor4t/ratatouille/client/util/OptionLocker;overrideSoundCategoryVolume(Ljava/lang/String;D)V"))
     private void limboExpress$overrideSoundCategoryVolume(Args args) {
         if (args.get(0).equals("ambient")) {
+            args.set(0, "unlocked");
             args.set(1, 0.15);
         }
         if (args.get(0).equals("record")) {
+            args.set(0, "unlocked");
             args.set(1, 0.2);
         }
     }

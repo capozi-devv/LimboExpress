@@ -43,17 +43,8 @@ public abstract class LimitedInventoryScreenMixin extends LimitedHandledScreen<P
                 int apart = 38;
                 int x = this.width / 2 - entries.size() * apart / 2 + 9;
                 int y = this.y - 46;
-                int j = 1;
-                for (int i = 0; i < entries.size(); i++, j++) {
+                for (int i = 0; i < entries.size(); i++) {
                     this.addDrawableChild(new LimitedInventoryScreen.StoreItemWidget(((LimitedInventoryScreen)(Object)this), x + apart * i, y, entries.get(i), i));
-                }
-                if (LimboExpressConfig.enableCoinTransfer) {
-                    this.addDrawableChild(new LimitedInventoryScreen.StoreItemWidget(((LimitedInventoryScreen)(Object)this), this.width - (this.width - 20), this.height - (this.height - 20), new ShopEntry(new ItemStack(ItemInit.COIN), 50, ShopEntry.Type.TOOL) {
-                        @Override
-                        public boolean onBuy(@NotNull PlayerEntity player) {
-                            return ShopFunctions.onBuy(player, this);
-                        }
-                    }, j));
                 }
             } else if (GameWorldComponent.KEY.get(objectPlayer.getWorld()).canUseKillerFeatures(objectPlayer)) {
                 List<ShopEntry> entries = ModifiedGameConstants.MODIFIED_KILLER_SHOP_ENTRIES;
@@ -63,9 +54,6 @@ public abstract class LimitedInventoryScreenMixin extends LimitedHandledScreen<P
                 int j = 1;
                 for (int i = 0; i < entries.size(); i++, j++) {
                     this.addDrawableChild(new LimitedInventoryScreen.StoreItemWidget(((LimitedInventoryScreen)(Object)this), x + apart * i, y, entries.get(i), i));
-                }
-                if (LimboExpressConfig.enableCoinTransfer) {
-                    this.addDrawableChild(new LimitedInventoryScreen.StoreItemWidget(((LimitedInventoryScreen)(Object)this), this.width - (this.width - 20), this.height - (this.height - 20), new ShopEntry(new ItemStack(ItemInit.COIN), 50, ShopEntry.Type.TOOL), j));
                 }
             }
             ci.cancel();
