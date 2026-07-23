@@ -1,5 +1,7 @@
 package net.capozi.limbo_express.common.packet.clientbound;
 
+import eu.midnightdust.core.MidnightLib;
+import eu.midnightdust.lib.config.MidnightConfig;
 import eu.midnightdust.lib.util.PlatformFunctions;
 import net.capozi.limbo_express.LimboExpress;
 import net.capozi.limbo_express.LimboExpressConfig;
@@ -30,7 +32,7 @@ public record ConfigMatchS2CPacket(int configEncoding) implements CustomPayload 
     public static class Receiver implements ClientPlayNetworking.PlayPayloadHandler<ConfigMatchS2CPacket> {
         @Override
         public void receive(ConfigMatchS2CPacket packet, ClientPlayNetworking.Context context) {
-            if (packet.configEncoding != LimboExpressConfig.encode()) {
+            if (LimboExpressConfig.encode() != packet.configEncoding()) {
                 context.player().networkHandler.getConnection().disconnect(DISCONNECT_TEXT);
             }
         }

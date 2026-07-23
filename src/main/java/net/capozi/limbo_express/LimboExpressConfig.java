@@ -26,7 +26,7 @@ public class LimboExpressConfig extends MidnightConfig {
     @Entry(min = 0, max = 1000) 
     public static int blackoutPrice = 250;
     @Entry(min = 0, max = 1000) 
-    public static int derringerPrice = 350;
+    public static int derringerPrice = 500;
     @Entry(min = 0, max = 1000) 
     public static int pillsPrice = 150;
     @Entry(min = 0, max = 1000) 
