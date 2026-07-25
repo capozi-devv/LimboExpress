@@ -10,6 +10,7 @@ import eu.midnightdust.lib.config.MidnightConfig;
 import net.capozi.limbo_express.client.hud.ComponentTimeRenderer;
 import net.capozi.limbo_express.common.cca.WorldBackgroundMusicManagerComponent;
 import net.capozi.limbo_express.common.game.function.ModifiedGameFunctions;
+import net.capozi.limbo_express.common.packet.clientbound.ConfigMatchS2CPacket;
 import net.capozi.limbo_express.foundation.BlockInit;
 import net.capozi.limbo_express.foundation.ItemInit;
 import net.capozi.limbo_express.foundation.MapEffectInit;
@@ -19,6 +20,7 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.item.Items;
 import net.minecraft.sound.SoundCategory;
@@ -28,6 +30,7 @@ public class LimboExpressClient implements ClientModInitializer {
     public static WorldBackgroundMusicManagerComponent musicManager;
     @Override
     public void onInitializeClient() {
+        ClientPlayNetworking.registerGlobalReceiver(ConfigMatchS2CPacket.ID, new ConfigMatchS2CPacket.Receiver());
         ClientTickEvents.START_WORLD_TICK.register((world) -> {
             musicManager = WorldBackgroundMusicManagerComponent.KEY.get(world);
         });

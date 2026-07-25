@@ -21,7 +21,7 @@ public record ConfigMatchS2CPacket(int configEncoding) implements CustomPayload 
     public Id<? extends CustomPayload> getId() {
         return ID;
     }
-    private static final Text DISCONNECT_TEXT = Text.literal("LIMBO EXPRESS /// ERROR\n").formatted(Formatting.BOLD)
+    private static final Text DISCONNECT_TEXT = Text.literal("LIMBO EXPRESS /// ERROR\n\n").formatted(Formatting.BOLD)
             .append(Text.literal("The server you are attempting to connect to has "))
             .append(Text.literal("LIMBO EXPRESS").formatted(Formatting.GOLD))
             .append(" installed, but your configuration file does not match the server's\n\n")

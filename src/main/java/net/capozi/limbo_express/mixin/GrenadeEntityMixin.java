@@ -5,6 +5,7 @@ import dev.doctor4t.wathe.game.GameConstants;
 import dev.doctor4t.wathe.game.GameFunctions;
 import dev.doctor4t.wathe.index.WatheParticles;
 import dev.doctor4t.wathe.index.WatheSounds;
+import net.capozi.limbo_express.mixin.access.GrenadeEntityInvoker;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.particle.ItemStackParticleEffect;
 import net.minecraft.particle.ParticleTypes;
@@ -22,7 +23,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(GrenadeEntity.class)
 public abstract class GrenadeEntityMixin {
-
     @Inject(method = "onCollision", at = @At("HEAD"), cancellable = true)
     private void limboiniscrazy$onCollisionWithWallCheck(HitResult hitResult, CallbackInfo ci) {
         GrenadeEntity self = (GrenadeEntity) (Object) this;

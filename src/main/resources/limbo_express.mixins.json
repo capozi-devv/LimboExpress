@@ -17,7 +17,7 @@
     "client.RoleNameRendererMixin",
     "client.StoreRendererMixin",
     "GrenadeEntityMixin",
-    "GrenadeEntityInvoker"
+    "access.GrenadeEntityInvoker"
   ],
   "client": [
     "client.HeldItemFeatureRendererMixin",

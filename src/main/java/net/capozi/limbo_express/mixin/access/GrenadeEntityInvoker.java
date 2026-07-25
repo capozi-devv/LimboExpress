@@ -1,4 +1,4 @@
-package net.capozi.limbo_express.mixin;
+package net.capozi.limbo_express.mixin.access;
 
 import dev.doctor4t.wathe.entity.GrenadeEntity;
 import net.minecraft.item.Item;
