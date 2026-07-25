@@ -15,7 +15,9 @@
     "access.PlayerShopComponentAccessor",
     "client.MoodRendererMixin",
     "client.RoleNameRendererMixin",
-    "client.StoreRendererMixin"
+    "client.StoreRendererMixin",
+    "GrenadeEntityMixin",
+    "GrenadeEntityInvoker"
   ],
   "client": [
     "client.HeldItemFeatureRendererMixin",
