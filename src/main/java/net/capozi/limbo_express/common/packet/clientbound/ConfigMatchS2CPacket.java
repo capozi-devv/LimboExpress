@@ -22,7 +22,7 @@ public record ConfigMatchS2CPacket(int configEncoding) implements CustomPayload 
         return ID;
     }
     private static final Text DISCONNECT_TEXT = Text.literal("LIMBO EXPRESS /// ERROR\n\n").formatted(Formatting.BOLD)
-            .append(Text.literal("The server you are attempting to connect to has "))
+            .append(Text.literal("The server you are attempting to connect to has ")).formatted(Formatting.RESET)
             .append(Text.literal("LIMBO EXPRESS").formatted(Formatting.GOLD))
             .append(" installed, but your configuration file does not match the server's\n\n")
             .append(Text.literal("Your configuration file is located at ").formatted(Formatting.GREEN))
