@@ -1,7 +1,5 @@
 package net.capozi.limbo_express.common.packet.clientbound;
 
-import eu.midnightdust.core.MidnightLib;
-import eu.midnightdust.lib.config.MidnightConfig;
 import eu.midnightdust.lib.util.PlatformFunctions;
 import net.capozi.limbo_express.LimboExpress;
 import net.capozi.limbo_express.LimboExpressConfig;
