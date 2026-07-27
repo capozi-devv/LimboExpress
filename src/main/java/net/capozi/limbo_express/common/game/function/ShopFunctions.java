@@ -73,5 +73,4 @@ public class ShopFunctions {
             shop.sync();
         }
     }
-
 }
