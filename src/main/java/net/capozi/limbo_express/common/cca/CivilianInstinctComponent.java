@@ -58,9 +58,9 @@ public class CivilianInstinctComponent implements AutoSyncedComponent, ServerTic
     @Override
     public void serverTick() {
         sync();
-        if (cooldownTicks > 2400) activeTicks++;
+        if (this.hasCivilianInstinct) activeTicks++;
         if (cooldownTicks > 0) cooldownTicks--;
-        if (activeTicks >= 1200) {
+        if (activeTicks >= 1800) {
             this.hasCivilianInstinct = false;
             activeTicks = 0;
         }
