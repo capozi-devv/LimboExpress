@@ -60,6 +60,7 @@ public interface ModifiedGameConstants {
             }
         });
         entries.add(new ShopEntry(WatheItems.LOCKPICK.getDefaultStack(), LimboExpressConfig.lockpickPrice, ShopEntry.Type.TOOL));
+        entries.add(new ShopEntry(WatheItems.CROWBAR.getDefaultStack(), LimboExpressConfig.crowbarPrice, ShopEntry.Type.TOOL));
         entries.add(new ShopEntry(WatheItems.BLACKOUT.getDefaultStack(), LimboExpressConfig.blackoutPrice, ShopEntry.Type.TOOL) {
             @Override
             public boolean onBuy(@NotNull PlayerEntity player) {
