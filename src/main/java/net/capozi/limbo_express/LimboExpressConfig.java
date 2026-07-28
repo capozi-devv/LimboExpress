@@ -7,6 +7,8 @@ public class LimboExpressConfig extends MidnightConfig {
     public static boolean enableBackgroundMusic = true;
     @Entry
     public static boolean enableRevolverSuicide = false;
+    @Entry
+    public static boolean enhancedGrenadePhysics = true;
     @Entry(min = 0, max = 1000)
     public static int knifePrice = 100;
     @Entry(min = 0, max = 1000) 
@@ -27,6 +29,8 @@ public class LimboExpressConfig extends MidnightConfig {
     public static int blackoutPrice = 250;
     @Entry(min = 0, max = 1000) 
     public static int derringerPrice = 450;
+    @Entry(min = 0, max = 1000)
+    public static int killerDerringerPrice = 150;
     @Entry(min = 0, max = 1000) 
     public static int pillsPrice = 150;
     @Entry(min = 0, max = 1000) 
@@ -37,6 +41,7 @@ public class LimboExpressConfig extends MidnightConfig {
         StringBuilder builder = new StringBuilder();
         String encoding = builder.toString() +
                 enableRevolverSuicide +
+                enhancedGrenadePhysics +
                 knifePrice +
                 swapPrice +
                 grenadePrice +
@@ -47,6 +52,7 @@ public class LimboExpressConfig extends MidnightConfig {
                 lockpickPrice +
                 blackoutPrice +
                 derringerPrice +
+                killerDerringerPrice +
                 pillsPrice +
                 clairvoyancePrice +
                 crowbarPrice;

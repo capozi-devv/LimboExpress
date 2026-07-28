@@ -41,7 +41,7 @@ public interface ModifiedGameConstants {
     }
     List<ShopEntry> MODIFIED_KILLER_SHOP_ENTRIES = Util.make(new ArrayList<>(), entries -> {
         entries.add(new ShopEntry(WatheItems.KNIFE.getDefaultStack(), LimboExpressConfig.knifePrice, ShopEntry.Type.WEAPON));
-        entries.add(new ShopEntry(new ItemStack(WatheItems.DERRINGER, 1), LimboExpressConfig.derringerPrice, ShopEntry.Type.WEAPON));
+        entries.add(new ShopEntry(new ItemStack(WatheItems.DERRINGER, 1), LimboExpressConfig.killerDerringerPrice, ShopEntry.Type.WEAPON));
         entries.add(new ShopEntry(ItemInit.SWAP.getDefaultStack(), LimboExpressConfig.swapPrice, ShopEntry.Type.WEAPON) {
             @Override
             public boolean onBuy(@NotNull PlayerEntity player) {

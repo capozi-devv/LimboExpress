@@ -56,6 +56,7 @@ public class OverdoseComponent implements AutoSyncedComponent, ServerTickingComp
             if (component.poisonTicks == -1) {
                 if (GameFunctions.isPlayerAliveAndSurvival(player)) {
                     component.setPoisonTicks(player.getWorld().getRandom().nextBetween(PlayerPoisonComponent.clampTime.getLeft(), PlayerPoisonComponent.clampTime.getRight()), null);
+                    timesPillsUsed = 0;
                 }
             }
         }
