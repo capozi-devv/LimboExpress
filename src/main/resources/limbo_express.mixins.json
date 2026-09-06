@@ -3,7 +3,6 @@
   "minVersion": "0.8",
   "package": "net.capozi.limbo_express.mixin",
   "compatibilityLevel": "JAVA_21",
-  "plugin": "net.capozi.limbo_express.mixin.LimboExpressMixinPlugin",
   "mixins": [
     "DerringerItemMixin",
     "GameFunctionsMixin",
@@ -12,12 +11,9 @@
     "StoreBuyPayloadReceiverMixin",
     "WatheClientMixin",
     "WatheItemTooltipsMixin",
+    "GrenadeEntityMixin",
     "access.BackgroundAmbienceAccessor",
     "access.PlayerShopComponentAccessor",
-    "client.MoodRendererMixin",
-    "client.RoleNameRendererMixin",
-    "client.StoreRendererMixin",
-    "GrenadeEntityMixin",
     "access.GrenadeEntityInvoker"
   ],
   "client": [
@@ -26,7 +22,10 @@
     "client.LimitedInventoryScreenMixin",
     "client.MinecraftClientMixin",
     "client.PlayerEntityRendererMixin",
-    "client.WorldRendererMixin"
+    "client.WorldRendererMixin",
+    "client.MoodRendererMixin",
+    "client.RoleNameRendererMixin",
+    "client.StoreRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

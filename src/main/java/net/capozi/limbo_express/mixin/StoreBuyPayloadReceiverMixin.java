@@ -20,7 +20,8 @@ public class StoreBuyPayloadReceiverMixin {
                 //PlayerShopComponent.KEY.get(context.player()).tryBuy(payload.index());
                 ShopFunctions.civilianTryBuy(payload.index(), PlayerShopComponent.KEY.get(context.player()));
                 ci.cancel();
-            } else if (GameWorldComponent.KEY.get(context.player().getWorld()).canUseKillerFeatures(context.player())) {
+            }
+            if (GameWorldComponent.KEY.get(context.player().getWorld()).canUseKillerFeatures(context.player())) {
                 ShopFunctions.modifiedKillerTryBuy(payload.index(), PlayerShopComponent.KEY.get(context.player()));
                 ci.cancel();
             }
